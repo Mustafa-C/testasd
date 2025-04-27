@@ -1,0 +1,3516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Neuroscience MCQ Bank</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        /* Style for the new overall progress bar */
+        .progress-bar-container {
+            margin-bottom: 20px;
+        }
+        #overall-progress-text {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+        #overall-progress-bar {
+            width: 100%;
+            height: 15px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        #overall-progress-fill {
+            height: 100%;
+            background-color: #48bb78; /* Green color for progress */
+            border-radius: 8px;
+            transition: width 0.5s ease-in-out;
+        }
+
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .option {
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        .option.selected {
+            background-color: #4299e1;
+            color: white;
+            border-color: #4299e1;
+        }
+        .option.correct {
+            background-color: #48bb78;
+            color: white;
+            border-color: #48bb78;
+        }
+        .option.incorrect {
+            background-color: #f56565;
+            color: white;
+            border-color: #f56565;
+        }
+         /* Style for selected incorrect answers in results */
+         .option.selected.incorrect {
+             background-color: #f56565; /* Red background */
+             color: white;
+             border-color: #f56565;
+         }
+          /* Style for correct answers in results when user was wrong */
+         .option.correct:not(.selected) {
+             background-color: #d4edda; /* Light green */
+             color: #155724; /* Dark green text */
+             border-color: #c3e6cb;
+         }
+
+
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #3182ce;
+        }
+        button:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+        .results {
+            display: none;
+        }
+        .result-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .result-item.correct {
+            background-color: rgba(72, 187, 120, 0.1);
+            border-left: 4px solid #48bb78;
+        }
+        .result-item.incorrect {
+            background-color: rgba(245, 101, 101, 0.1);
+            border-left: 4px solid #f56565;
+        }
+         /* New style for unanswered questions in the results list */
+         .result-item.unanswered {
+             background-color: rgba(160, 174, 192, 0.1);
+             border-left: 4px solid #a0aec0;
+         }
+
+        .stats {
+            background-color: #ebf8ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .stats span {
+            font-weight: bold;
+            color: #2b6cb0;
+        }
+        /* Style for contents list */
+        #contents-list-container {
+            margin-top: 40px;
+        }
+        #contents-list {
+            list-style: none;
+            padding: 0;
+        }
+        #contents-list li {
+            margin-bottom: 8px;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #contents-list li:hover {
+             background-color: #e9ecef;
+        }
+        #contents-list li strong {
+            color: #2c3e50;
+        }
+         #contents-list li span {
+             font-weight: bold;
+             color: #2b6cb0;
+         }
+         /* Style for Reset button */
+        #reset-quiz-button {
+            background-color: #e53e3e; /* Red color */
+            border-color: #e53e3e;
+            margin-top: 40px;
+        }
+         #reset-quiz-button:hover {
+             background-color: #c53030;
+         }
+
+         /* Style for overall completion message */
+         #overall-completion-message .stats {
+            background-color: #ebf8ff; /* Same as section stats */
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+         #overall-completion-message .stats span {
+            font-weight: bold;
+            color: #2b6cb0; /* Same as section stats */
+         }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comprehensive Neuroscience MCQ Bank</h1>
+
+        <!-- New: Overall Progress Bar -->
+        <div class="progress-bar-container">
+            <div id="overall-progress-text">Overall Progress: 0% (0 / 0)</div>
+            <div id="overall-progress-bar">
+                <div id="overall-progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="quiz-container">
+            <div class="progress-bar">
+                <div id="section-info">Section: <span id="current-section"></span></div>
+                <div id="question-progress">Question <span id="current-question"></span> of <span id="total-questions"></span></div>
+            </div>
+
+            <div class="question" id="question-text"></div>
+
+            <div class="options" id="options-container"></div>
+
+            <div class="controls">
+                <button id="back-button" disabled>Back</button>
+                <button id="next-button" disabled>Next Question</button>
+            </div>
+        </div>
+
+        <div id="results-container" class="results">
+            <h2>Section Results</h2>
+
+            <div class="stats">
+                You scored <span id="correct-count"></span> out of <span id="question-count"></span>
+                (<span id="percentage"></span>%)
+            </div>
+
+            <div id="results-list"></div>
+
+            <div class="controls">
+                <button id="next-section-button">Next Section</button>
+            </div>
+        </div>
+
+        <!-- New: Overall Completion Message -->
+        <div id="overall-completion-message" class="results">
+             <h2>Quiz Completed!</h2>
+             <p>You have completed all sections of the quiz.</p>
+             <div class="stats" id="overall-stats-container">
+                 <!-- Overall stats generated here -->
+             </div>
+             <div class="controls" style="justify-content: center;">
+                  <button id="overall-restart-button" style="margin-top: 20px;">Restart Quiz</button>
+             </div>
+         </div>
+
+
+        <!-- New: Contents List -->
+        <div id="contents-list-container">
+            <h2>Contents</h2>
+            <ul id="contents-list">
+                <!-- List items dynamically generated here -->
+            </ul>
+        </div>
+
+        <!-- New: Reset Button -->
+        <div style="text-align: center; margin-top: 40px;">
+            <button id="reset-quiz-button">Reset All Data</button>
+        </div>
+
+    </div> <!-- Close container -->
+
+    <script>
+        // Parse the MCQ data from the PDF
+        const quizData = [
+    {
+        title: "16. Head & Neck - Osteology",
+        questions: [
+            {
+                question: "Q1. Through which foramen does the maxillary branch of the trigeminal nerve pass?",
+                options: [
+                    "A) Foramen rotundum",
+                    "B) Foramen ovale",
+                    "C) Foramen spinosum",
+                    "D) Jugular foramen",
+                    "E) Superior orbital fissure"
+                ],
+                answer: "A) Foramen rotundum"
+            },
+            {
+                question: "Q2. The internal acoustic meatus transmits which of the following structures?",
+                options: [
+                    "A) Oculomotor, trochlear and abducens nerves",
+                    "B) Facial and vestibulocochlear nerves",
+                    "C) Maxillary branch of trigeminal nerve",
+                    "D) Internal carotid artery",
+                    "E) Optic nerve and ophthalmic artery"
+                ],
+                answer: "B) Facial and vestibulocochlear nerves"
+            },
+            {
+                question: "Q3. Which structure separates the middle ear from the cranial cavity?",
+                options: [
+                    "A) Foramen magnum",
+                    "B) Tegmen tympani",
+                    "C) Jugular foramen",
+                    "D) Stylomastoid foramen",
+                    "E) Foramen lacerum"
+                ],
+                answer: "B) Tegmen tympani"
+            }
+        ]
+    },
+     {
+        title: "16. Head & Neck - Blood Supply",
+        questions: [
+            {
+                question: "Q4. Which artery enters the skull through the carotid canal?",
+                options: [
+                    "A) Vertebral artery",
+                    "B) External carotid artery",
+                    "C) Internal carotid artery",
+                    "D) Maxillary artery",
+                    "E) Middle meningeal artery"
+                ],
+                answer: "C) Internal carotid artery"
+            },
+            {
+                question: "Q5. The middle meningeal artery enters the skull through which foramen?",
+                options: [
+                    "A) Foramen ovale",
+                    "B) Foramen spinosum",
+                    "C) Foramen rotundum",
+                    "D) Jugular foramen",
+                    "E) Foramen lacerum"
+                ],
+                answer: "B) Foramen spinosum"
+            },
+            {
+                question: "Q6. Extradural hemorrhage most commonly results from damage to:",
+                options: [
+                    "A) Superior sagittal sinus",
+                    "B) Middle meningeal artery",
+                    "C) Anterior cerebral artery",
+                    "D) Internal carotid artery",
+                    "E) Vertebral artery"
+                ],
+                answer: "B) Middle meningeal artery"
+            },
+            {
+                question: "Q7. Which arterial structure completes the Circle of Willis posteriorly?",
+                options: [
+                    "A) Anterior communicating artery",
+                    "B) Posterior communicating artery",
+                    "C) Posterior cerebral artery",
+                    "D) Basilar artery",
+                    "E) Anterior choroidal artery"
+                ],
+                answer: "B) Posterior communicating artery"
+            }
+        ]
+    },
+     {
+        title: "16. Head & Neck - Special Areas",
+        questions: [
+            {
+                question: "Q8. The lacrimal gland is innervated by:",
+                options: [
+                    "A) Parasympathetic fibers from the facial nerve",
+                    "B) Parasympathetic fibers from the oculomotor nerve",
+                    "C) Parasympathetic fibers from the glossopharyngeal nerve",
+                    "D) Sympathetic fibers from the superior cervical ganglion",
+                    "E) Sympathetic fibers from the ciliary ganglion"
+                ],
+                answer: "A) Parasympathetic fibers from the facial nerve"
+            },
+            {
+                question: "Q9. The structure of the eye that controls the amount of light entering is:",
+                options: [
+                    "A) Cornea",
+                    "B) Lens",
+                    "C) Iris",
+                    "D) Ciliary body",
+                    "E) Sclera"
+                ],
+                answer: "C) Iris"
+            },
+            {
+                question: "Q10. The inner ear contains:",
+                options: [
+                    "A) Malleus, incus and stapes",
+                    "B) Semicircular canals, utricle and saccule",
+                    "C) Eustachian tube",
+                    "D) Tympanic membrane",
+                    "E) External auditory meatus"
+                ],
+                answer: "B) Semicircular canals, utricle and saccule"
+            }
+        ]
+    },
+     {
+        title: "17. Embryonic Development",
+        questions: [
+            {
+                question: "Q11. The retina develops from the:",
+                options: [
+                    "A) Neural crest",
+                    "B) Mesoderm",
+                    "C) Forebrain",
+                    "D) Midbrain",
+                    "E) Hindbrain"
+                ],
+                answer: "C) Forebrain"
+            },
+            {
+                question: "Q12. Failure of neural tube closure results in:",
+                options: [
+                    "A) Hydrocephalus",
+                    "B) Spina bifida",
+                    "C) Cerebral palsy",
+                    "D) Microcephaly",
+                    "E) Holoprosencephaly"
+                ],
+                answer: "B) Spina bifida"
+            },
+            {
+                question: "Q13. Adult neurogenesis occurs in which of the following regions?",
+                options: [
+                    "A) Motor cortex",
+                    "B) Cerebellum",
+                    "C) Dentate gyrus",
+                    "D) Substantia nigra",
+                    "E) Spinal cord"
+                ],
+                answer: "C) Dentate gyrus"
+            }
+        ]
+    },
+     {
+        title: "18. CNS Morphology - CNS Compartments",
+        questions: [
+            {
+                question: "Q14. The choroid plexus is involved in:",
+                options: [
+                    "A) Production of cerebrospinal fluid",
+                    "B) Absorption of cerebrospinal fluid",
+                    "C) Regulation of blood-brain barrier",
+                    "D) Formation of myelin",
+                    "E) Disposal of cellular debris"
+                ],
+                answer: "A) Production of cerebrospinal fluid"
+            },
+            {
+                question: "Q15. The relative protein concentration of CSF compared to plasma is:",
+                options: [
+                    "A) Much higher",
+                    "B) Much lower",
+                    "C) Slightly higher",
+                    "D) Slightly lower",
+                    "E) The same"
+                ],
+                answer: "B) Much lower"
+            },
+            {
+                question: "Q16. Which structure is NOT involved in the blood-brain barrier?",
+                options: [
+                    "A) Astrocyte end-feet",
+                    "B) Endothelial tight junctions",
+                    "C) Ependymal cells",
+                    "D) Basement membrane",
+                    "E) Pericytes"
+                ],
+                answer: "C) Ependymal cells"
+            }
+        ]
+    },
+     {
+        title: "18. CNS Morphology - Neuroanatomy",
+        questions: [
+            {
+                question: "Q17. The internal capsule contains:",
+                options: [
+                    "A) Both cortical afferents and efferent fibers",
+                    "B) Only cortical afferent fibers",
+                    "C) Only cortical efferent fibers",
+                    "D) Only cortical commissural fibers",
+                    "E) Only cortical association fibers"
+                ],
+                answer: "A) Both cortical afferents and efferent fibers"
+            },
+            {
+                question: "Q18. The thalamus is divided from the hypothalamus by:",
+                options: [
+                    "A) Stria terminalis",
+                    "B) Fornix",
+                    "C) Hypothalamic sulcus",
+                    "D) Third ventricle",
+                    "E) Mammillothalamic tract"
+                ],
+                answer: "C) Hypothalamic sulcus"
+            },
+            {
+                question: "Q19. The structure that connects the left and right cerebral hemispheres is:",
+                options: [
+                    "A) Internal capsule",
+                    "B) Corpus callosum",
+                    "C) Fornix",
+                    "D) Anterior commissure",
+                    "E) Posterior commissure"
+                ],
+                answer: "B) Corpus callosum"
+            },
+            {
+                question: "Q20. The corticospinal tract decussates in the:",
+                options: [
+                    "A) Medulla",
+                    "B) Pons",
+                    "C) Midbrain",
+                    "D) Spinal cord",
+                    "E) Internal capsule"
+                ],
+                answer: "A) Medulla"
+            }
+        ]
+    },
+     {
+        title: "19. Principles of Neuronal Function - Methods of Study",
+        questions: [
+            {
+                question: "Q21. Which imaging technique involves the use of radioactive tracers to measure metabolic activity in the brain?",
+                options: [
+                    "A) MRI",
+                    "B) fMRI",
+                    "C) CT",
+                    "D) PET",
+                    "E) MEG"
+                ],
+                answer: "D) PET"
+            },
+            {
+                question: "Q22. Which of the following staining techniques is best for visualizing cell bodies in the nervous system?",
+                options: [
+                    "A) Golgi",
+                    "B) Nissl",
+                    "C) Weigert",
+                    "D) Immunohistochemistry",
+                    "E) In situ hybridization"
+                ],
+                answer: "B) Nissl"
+            }
+        ]
+    },
+     {
+        title: "19. Principles of Neuronal Function - Structure and Function of Neurons and Glia",
+        questions: [
+            {
+                question: "Q23. The blood brain barrier is primarily formed by:",
+                options: [
+                    "A) Astrocytes",
+                    "B) Endothelial cells",
+                    "C) Microglia",
+                    "D) Oligodendrocytes",
+                    "E) Ependymal cells"
+                ],
+                answer: "B) Endothelial cells"
+            },
+            {
+                question: "Q24. Myelin in the central nervous system is produced by:",
+                options: [
+                    "A) Astrocytes",
+                    "B) Schwann cells",
+                    "C) Oligodendrocytes",
+                    "D) Microglia",
+                    "E) Ependymal cells"
+                ],
+                answer: "C) Oligodendrocytes"
+            },
+            {
+                question: "Q25. Which glial cells are responsible for phagocytosis in the CNS?",
+                options: [
+                    "A) Astrocytes",
+                    "B) Oligodendrocytes",
+                    "C) Microglia",
+                    "D) Ependymal cells",
+                    "E) Satellite cells"
+                ],
+                answer: "C) Microglia"
+            }
+        ]
+    },
+    {
+        title: "19. Principles of Neuronal Function - Neuronal Disorders",
+        questions: [
+            {
+                question: "Q26. Multiple sclerosis is primarily a disease of:",
+                options: [
+                    "A) Neuronal degeneration",
+                    "B) Demyelination",
+                    "C) Microglial activation",
+                    "D) Astrocyte proliferation",
+                    "E) Neurofibrillary tangle formation"
+                ],
+                answer: "B) Demyelination"
+            }
+        ]
+    },
+    {
+        title: "19. Principles of Neuronal Function - Synaptic Transmission",
+        questions: [
+            {
+                question: "Q27. Which neurotransmitter acts on NMDA receptors?",
+                options: [
+                    "A) Acetylcholine",
+                    "B) GABA",
+                    "C) Dopamine",
+                    "D) Glutamate",
+                    "E) Noradrenaline"
+                ],
+                answer: "D) Glutamate"
+            },
+            {
+                question: "Q28. The main inhibitory neurotransmitter in the brain is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Enkephalin",
+                    "C) GABA",
+                    "D) Glutamate",
+                    "E) Glycine"
+                ],
+                answer: "C) GABA"
+            },
+             {
+                question: "Q29. GABA predominantly acts on which ion channel in the CNS?",
+                options: [
+                    "A) Sodium channel",
+                    "B) Potassium channel",
+                    "C) Calcium channel",
+                    "D) Chloride channel",
+                    "E) Magnesium channel"
+                ],
+                answer: "D) Chloride channel"
+            },
+            {
+                question: "Q30. Benzodiazepines exert their effect primarily by acting on:",
+                options: [
+                    "A) GABA-A receptors",
+                    "B) GABA-B receptors",
+                    "C) Glutamate receptors",
+                    "D) Nicotinic acetylcholine receptors",
+                    "E) Muscarinic acetylcholine receptors"
+                ],
+                answer: "A) GABA-A receptors"
+            }
+        ]
+    },
+    {
+        title: "19. Principles of Neuronal Function - Epileptic Discharges",
+        questions: [
+            {
+                question: "Q31. Which of the following drugs is NOT commonly used to treat epilepsy?",
+                options: [
+                    "A) Carbamazepine",
+                    "B) Phenytoin",
+                    "C) Valproate",
+                    "D) Diazepam",
+                    "E) Haloperidol"
+                ],
+                answer: "E) Haloperidol"
+            },
+             {
+                question: "Q32. The mechanism of action of phenytoin in treating epilepsy involves:",
+                options: [
+                    "A) Enhancing GABA function",
+                    "B) Blocking sodium channels",
+                    "C) Blocking calcium channels",
+                    "D) Inhibiting glutamate release",
+                    "E) Enhancing potassium channel conductance"
+                ],
+                answer: "B) Blocking sodium channels"
+            }
+        ]
+    },
+    {
+        title: "20. Sensory Systems - Somatosensory Pathways",
+        questions: [
+            {
+                question: "Q33. Mechanosensory dorsal root ganglion axons from the lower limb are found in the:",
+                options: [
+                    "A) Anterior white commissure",
+                    "B) Cuneate fasciculus",
+                    "C) Corticospinal tract",
+                    "D) Gracile fasciculus",
+                    "E) Spinothalamic tract"
+                ],
+                answer: "D) Gracile fasciculus"
+            },
+             {
+                question: "Q34. Which of the following is a rapidly adapting cutaneous touch receptor?",
+                options: [
+                    "A) Golgi tendon organ",
+                    "B) Meissner's corpuscle",
+                    "C) Merkel's disc",
+                    "D) Muscle spindle",
+                    "E) Ruffini ending"
+                ],
+                answer: "B) Meissner's corpuscle"
+            },
+             {
+                question: "Q35. The major thalamic relay for somatosensory information is the:",
+                options: [
+                    "A) Anterior nucleus",
+                    "B) Lateral geniculate nucleus",
+                    "C) Medial geniculate nucleus",
+                    "D) Ventral lateral nucleus",
+                    "E) Ventral posterior lateral nucleus"
+                ],
+                answer: "E) Ventral posterior lateral nucleus"
+            }
+        ]
+    },
+    {
+        title: "20. Sensory Systems - Pain",
+        questions: [
+            {
+                question: "Q36. Primary sensory neurons involved in nociception are often:",
+                options: [
+                    "A) Large diameter, myelinated fibers",
+                    "B) Small diameter, myelinated fibers",
+                    "C) Small diameter, unmyelinated fibers",
+                    "D) Large diameter, unmyelinated fibers",
+                    "E) Medium diameter, partially myelinated fibers"
+                ],
+                answer: "C) Small diameter, unmyelinated fibers"
+            },
+            {
+                question: "Q37. The central control of pain involves which of the following structures?",
+                options: [
+                    "A) Dorsal columns",
+                    "B) Inferior olive",
+                    "C) Medial lemniscus",
+                    "D) Periaqueductal grey matter",
+                    "E) Substantia nigra"
+                ],
+                answer: "D) Periaqueductal grey matter"
+            },
+            {
+                question: "Q38. Which of the following is NOT involved in the mechanism of action of NSAIDs?",
+                options: [
+                    "A) Inhibition of cyclooxygenase",
+                    "B) Reduced prostaglandin synthesis",
+                    "C) Reduced inflammatory response",
+                    "D) Direct action on opioid receptors",
+                    "E) Reduced sensitization of nociceptors"
+                ],
+                answer: "D) Direct action on opioid receptors"
+            }
+        ]
+    },
+    {
+        title: "20. Sensory Systems - Vision",
+        questions: [
+            {
+                question: "Q39. The structure that controls the amount of light entering the eye is the:",
+                options: [
+                    "A) Cornea",
+                    "B) Lens",
+                    "C) Iris",
+                    "D) Ciliary body",
+                    "E) Sclera"
+                ],
+                answer: "C) Iris"
+            },
+            {
+                question: "Q40. The fovea is characterized by:",
+                options: [
+                    "A) High density of rods",
+                    "B) High density of cones",
+                    "C) Absence of photoreceptors",
+                    "D) Entry point of the optic nerve",
+                    "E) Absence of blood vessels"
+                ],
+                answer: "B) High density of cones"
+            },
+            {
+                question: "Q41. Visual information is relayed to the primary visual cortex via the:",
+                options: [
+                    "A) Lateral geniculate nucleus",
+                    "B) Medial geniculate nucleus",
+                    "C) Pulvinar",
+                    "D) Superior colliculus",
+                    "E) Inferior colliculus"
+                ],
+                answer: "A) Lateral geniculate nucleus"
+            },
+            {
+                question: "Q42. A lesion of the right optic tract would result in:",
+                options: [
+                    "A) Right eye blindness",
+                    "B) Left eye blindness",
+                    "C) Bitemporal hemianopia",
+                    "D) Right homonymous hemianopia",
+                    "E) Left homonymous hemianopia"
+                ],
+                answer: "D) Right homonymous hemianopia"
+            }
+        ]
+    },
+     {
+        title: "20. Sensory Systems - Audition",
+        questions: [
+            {
+                question: "Q43. The cochlea is filled with:",
+                options: [
+                    "A) Air",
+                    "B) Blood",
+                    "C) Cerebrospinal fluid",
+                    "D) Endolymph and perilymph",
+                    "E) Synovial fluid"
+                ],
+                answer: "D) Endolymph and perilymph"
+            },
+             {
+                question: "Q44. The nucleus concerned with processing inter-aural timing differences is the:",
+                options: [
+                    "A) Cochlear nuclei",
+                    "B) Lateral superior olivary nucleus",
+                    "C) Medial superior olivary nucleus",
+                    "D) Posterior parietal cortex",
+                    "E) Trapezoid body"
+                ],
+                answer: "C) Medial superior olivary nucleus"
+            },
+             {
+                question: "Q45. The major thalamic relay for auditory information is the:",
+                options: [
+                    "A) Lateral geniculate nucleus",
+                    "B) Medial geniculate nucleus",
+                    "C) Pulvinar",
+                    "D) Red nucleus",
+                    "E) Ventro-posterior nucleus"
+                ],
+                answer: "B) Medial geniculate nucleus"
+            },
+             {
+                question: "Q46. The primary auditory cortex is located in the:",
+                options: [
+                    "A) Inferior parietal cortex",
+                    "B) Inferior temporal sulcus",
+                    "C) Superior temporal gyrus",
+                    "D) Precentral gyrus",
+                    "E) Postcentral gyrus"
+                ],
+                answer: "C) Superior temporal gyrus"
+            }
+        ]
+    },
+     {
+        title: "20. Sensory Systems - Vestibular System",
+        questions: [
+            {
+                question: "Q47. The semicircular canals are concerned with:",
+                options: [
+                    "A) Angular acceleration of the head",
+                    "B) Linear acceleration of the head",
+                    "C) Head position",
+                    "D) Hearing",
+                    "E) Circular head movement"
+                ],
+                answer: "A) Angular acceleration of the head"
+            },
+             {
+                question: "Q48. The vestibular ganglia are located in the:",
+                options: [
+                    "A) Cerebellum",
+                    "B) Brainstem",
+                    "C) Internal ear",
+                    "D) External ear",
+                    "E) Middle ear"
+                ],
+                answer: "C) Internal ear"
+            }
+        ]
+    },
+     {
+        title: "20. Sensory Systems - Smell and Taste",
+        questions: [
+            {
+                question: "Q49. The taste buds in the anterior two-thirds of the tongue are innervated by which nerve?",
+                options: [
+                    "A) Facial",
+                    "B) Glossopharyngeal",
+                    "C) Hypoglossal",
+                    "D) Trigeminal",
+                    "E) Vagus"
+                ],
+                answer: "A) Facial"
+            },
+             {
+                question: "Q50. The common sensation and innervation of taste buds in the posterior third of the tongue is provided by which nerve?",
+                options: [
+                    "A) Facial",
+                    "B) Glossopharyngeal",
+                    "C) Hypoglossal",
+                    "D) Trigeminal",
+                    "E) Vagus"
+                ],
+                answer: "B) Glossopharyngeal"
+            },
+             {
+                question: "Q51. Information from taste buds is relayed to the:",
+                options: [
+                    "A) Nucleus accumbens",
+                    "B) Nucleus ambiguus",
+                    "C) Nucleus coeruleus",
+                    "D) Nucleus of spinal tract of trigeminal nerve",
+                    "E) Nucleus solitarius"
+                ],
+                answer: "E) Nucleus solitarius"
+            },
+            {
+                question: "Q52. The olfactory receptor neurons lie within the nasal mucosa of the:",
+                options: [
+                    "A) Inferior concha",
+                    "B) Middle concha",
+                    "C) Nasal septum",
+                    "D) Olfactory bulb",
+                    "E) Superior concha"
+                ],
+                answer: "E) Superior concha"
+            }
+        ]
+    },
+     {
+        title: "21. Motor Systems - Lower Motor Neuron Pools",
+        questions: [
+            {
+                question: "Q53. Lower motor neurons have their cell bodies in the:",
+                options: [
+                    "A) Dorsal horn of the spinal cord",
+                    "B) Dorsal root ganglia",
+                    "C) Pre-central gyrus",
+                    "D) Post-central gyrus",
+                    "E) Ventral horn of the spinal cord"
+                ],
+                answer: "E) Ventral horn of the spinal cord"
+            },
+            {
+                question: "Q54. The major neurotransmitter used by spinal motor neurons is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Enkephalin",
+                    "C) GABA",
+                    "D) Glutamate",
+                    "E) Glycine"
+                ],
+                answer: "A) Acetylcholine"
+            }
+        ]
+    },
+     {
+        title: "21. Motor Systems - Muscle Stretch Reflex",
+        questions: [
+            {
+                question: "Q55. The monosynaptic stretch reflex for the knee occurs at spinal nerve level:",
+                options: [
+                    "A) C5",
+                    "B) C7",
+                    "C) L3/4",
+                    "D) S1",
+                    "E) T7"
+                ],
+                answer: "C) L3/4"
+            },
+             {
+                question: "Q56. Muscle spindles provide feedback from:",
+                options: [
+                    "A) The tendons of muscles",
+                    "B) Only fast-acting twitch muscles",
+                    "C) Smooth muscle cells",
+                    "D) Only postural muscles",
+                    "E) All striated muscles"
+                ],
+                answer: "E) All striated muscles"
+            }
+        ]
+    },
+     {
+        title: "21. Motor Systems - Upper Motor Neurons",
+        questions: [
+            {
+                question: "Q57. The corticospinal tract originates from:",
+                options: [
+                    "A) The cerebellum",
+                    "B) The basal ganglia",
+                    "C) The precentral gyrus (motor cortex)",
+                    "D) The postcentral gyrus (sensory cortex)",
+                    "E) The thalamus"
+                ],
+                answer: "C) The precentral gyrus (motor cortex)"
+            },
+            {
+                question: "Q58. An upper motor neuron lesion may cause all of the following EXCEPT:",
+                options: [
+                    "A) Spasticity",
+                    "B) Hyperreflexia",
+                    "C) Babinski sign",
+                    "D) Muscle atrophy",
+                    "E) Loss of fine motor control"
+                ],
+                answer: "D) Muscle atrophy"
+            }
+        ]
+    },
+     {
+        title: "21. Motor Systems - Basal Ganglia",
+        questions: [
+            {
+                question: "Q59. The substantia nigra pars compacta contains:",
+                options: [
+                    "A) Cholinergic neurons",
+                    "B) Dopaminergic neurons",
+                    "C) GABAergic neurons",
+                    "D) Glutamatergic neurons",
+                    "E) Noradrenergic neurons"
+                ],
+                answer: "B) Dopaminergic neurons"
+            },
+            {
+                question: "Q60. Which structure sends glutamatergic projections to the globus pallidus interna?",
+                options: [
+                    "A) Caudate nucleus",
+                    "B) Putamen",
+                    "C) Substantia nigra pars compacta",
+                    "D) Subthalamic nucleus",
+                    "E) Thalamus"
+                ],
+                answer: "D) Subthalamic nucleus"
+            },
+             {
+                question: "Q61. The movement disorder typically associated with Parkinson's disease is:",
+                options: [
+                    "A) Chorea",
+                    "B) Athetosis",
+                    "C) Ballism",
+                    "D) Resting tremor",
+                    "E) Intention tremor"
+                ],
+                answer: "D) Resting tremor"
+            },
+            {
+                question: "Q62. Which basal ganglia structure is responsible for ballism when damaged?",
+                options: [
+                    "A) Caudate nucleus",
+                    "B) Putamen",
+                    "C) Globus pallidus",
+                    "D) Substantia nigra",
+                    "E) Subthalamic nucleus"
+                ],
+                answer: "E) Subthalamic nucleus"
+            },
+             {
+                question: "Q63. The major drug therapy for Parkinson's disease is L-DOPA which:",
+                options: [
+                    "A) Acts directly at D1 and D2 receptors",
+                    "B) Acts directly at GABA receptors",
+                    "C) Enhances dopamine production by remaining dopaminergic neurons",
+                    "D) Prevents further degeneration of dopaminergic neurons",
+                    "E) Stimulates dopamine neuron neurogenesis"
+                ],
+                answer: "C) Enhances dopamine production by remaining dopaminergic neurons"
+            }
+        ]
+    },
+     {
+        title: "21. Motor Systems - Cerebellum",
+        questions: [
+            {
+                question: "Q64. The main tract conveying proprioceptive information from the lower limbs to the cerebellum is the:",
+                options: [
+                    "A) Antero-lateral tract",
+                    "B) Dorsal spino-cerebellar tract",
+                    "C) Ponto-cerebellar tract",
+                    "D) Superior cerebellar peduncle",
+                    "E) Vestibulo-cerebellar tract"
+                ],
+                answer: "B) Dorsal spino-cerebellar tract"
+            },
+            {
+                question: "Q65. The major output pathway from the deep cerebellar nuclei is the:",
+                options: [
+                    "A) Dorsal spino-cerebellar tract",
+                    "B) Inferior cerebellar peduncle",
+                    "C) Middle cerebellar peduncle",
+                    "D) Ponto-cerebellar tract",
+                    "E) Superior cerebellar peduncle"
+                ],
+                answer: "E) Superior cerebellar peduncle"
+            },
+             {
+                question: "Q66. The major input pathway to the cerebellum from the pontine nuclei is the:",
+                options: [
+                    "A) Dorsal spino-cerebellar tract",
+                    "B) Inferior cerebellar peduncle",
+                    "C) Middle cerebellar peduncle",
+                    "D) Superior cerebellar peduncle",
+                    "E) Vestibulo-cerebellar tract"
+                ],
+                answer: "C) Middle cerebellar peduncle"
+            },
+             {
+                question: "Q67. The deep cerebellar nucleus concerned with vestibular outputs is the:",
+                options: [
+                    "A) Cuneate nucleus",
+                    "B) Dentate nucleus",
+                    "C) Emboliform nucleus",
+                    "D) Fastigial nucleus",
+                    "E) Globose nucleus"
+                ],
+                answer: "D) Fastigial nucleus"
+            },
+             {
+                question: "Q68. Which is NOT a symptom of cerebellar lesion?",
+                options: [
+                    "A) Incoordination",
+                    "B) Intention tremor",
+                    "C) Nystagmus",
+                    "D) Postural ataxia",
+                    "E) Resting tremor"
+                ],
+                answer: "E) Resting tremor"
+            }
+        ]
+    },
+    {
+        title: "21. Motor Systems - Eye Movement Control and Pupillary Reflexes",
+        questions: [
+            {
+                question: "Q69. The main axon pathway interconnecting the brain stem nuclei involved in coordinated eye movements is the:",
+                options: [
+                    "A) Dorsal longitudinal fasciculus",
+                    "B) Lateral lemniscus",
+                    "C) Lateral longitudinal fasciculus",
+                    "D) Medial lemniscus",
+                    "E) Medial longitudinal fasciculus"
+                ],
+                answer: "E) Medial longitudinal fasciculus"
+            },
+             {
+                question: "Q70. The superior oblique eye muscle is controlled by which nerve?",
+                options: [
+                    "A) Abducens",
+                    "B) Facial",
+                    "C) Oculomotor",
+                    "D) Ophthalmic",
+                    "E) Trochlear"
+                ],
+                answer: "E) Trochlear"
+            },
+             {
+                question: "Q71. The afferent pathway of the pupillary light reflex is the:",
+                options: [
+                    "A) Facial nerve",
+                    "B) Oculomotor nerve",
+                    "C) Ophthalmic nerve",
+                    "D) Optic nerve",
+                    "E) Trochlear nerve"
+                ],
+                answer: "D) Optic nerve"
+            },
+             {
+                question: "Q72. The pre-ganglionic parasympathetic innervation of the ciliary muscle arises in the:",
+                options: [
+                    "A) Dorsal nucleus of vagus",
+                    "B) Edinger-Westphal nucleus",
+                    "C) Inferior salivatory nucleus",
+                    "D) Oculomotor nucleus",
+                    "E) Superior salivatory nucleus"
+                ],
+                answer: "B) Edinger-Westphal nucleus"
+            },
+            {
+                question: "Q73. The movement of the two eyes toward the midline is called a:",
+                options: [
+                    "A) Divergence movement",
+                    "B) Nystagmus",
+                    "C) Saccade",
+                    "D) Strabismus",
+                    "E) Vergence movement"
+                ],
+                answer: "E) Vergence movement"
+            }
+        ]
+    },
+     {
+        title: "22. Cranial Nerves",
+        questions: [
+            {
+                question: "Q74. Which cranial nerve provides innervation of the muscles of mastication?",
+                options: [
+                    "A) Facial",
+                    "B) Glossopharyngeal",
+                    "C) Hypoglossal",
+                    "D) Spinal accessory",
+                    "E) Trigeminal"
+                ],
+                answer: "E) Trigeminal"
+            },
+             {
+                question: "Q75. Which cranial nerve provides the major parasympathetic innervation of the heart?",
+                options: [
+                    "A) Facial",
+                    "B) Glossopharyngeal",
+                    "C) Oculomotor",
+                    "D) Spinal accessory",
+                    "E) Vagus"
+                ],
+                answer: "E) Vagus"
+            },
+             {
+                question: "Q76. Which cranial nerve innervates the conjunctiva of the eye?",
+                options: [
+                    "A) Abducens",
+                    "B) Oculomotor",
+                    "C) Optic",
+                    "D) Trigeminal",
+                    "E) Trochlear"
+                ],
+                answer: "D) Trigeminal"
+            },
+             {
+                question: "Q77. Which cranial nerve supplies anterior two-thirds of the tongue with taste sensation?",
+                options: [
+                    "A) Facial",
+                    "B) Glossopharyngeal",
+                    "C) Hypoglossal",
+                    "D) Olfactory",
+                    "E) Trigeminal"
+                ],
+                answer: "A) Facial"
+            },
+             {
+                question: "Q78. Which cranial nerve innervates the lateral rectus muscle of the eye?",
+                options: [
+                    "A) Abducens",
+                    "B) Facial",
+                    "C) Oculomotor",
+                    "D) Trigeminal",
+                    "E) Trochlear"
+                ],
+                answer: "A) Abducens"
+            }
+        ]
+    },
+     {
+        title: "23. Cortex, Thalamus, and Hypothalamus - Cortex",
+        questions: [
+            {
+                question: "Q79. The primary visual cortex is located in the:",
+                options: [
+                    "A) Frontal lobe",
+                    "B) Parietal lobe",
+                    "C) Temporal lobe",
+                    "D) Occipital lobe",
+                    "E) Insula"
+                ],
+                answer: "D) Occipital lobe"
+            },
+            {
+                question: "Q80. The primary somatosensory cortex is located in the:",
+                options: [
+                    "A) Precentral gyrus",
+                    "B) Postcentral gyrus",
+                    "C) Superior temporal gyrus",
+                    "D) Calcarine sulcus",
+                    "E) Cingulate gyrus"
+                ],
+                answer: "B) Postcentral gyrus"
+            }
+        ]
+    },
+     {
+        title: "23. Cortex, Thalamus, and Hypothalamus - Thalamus",
+        questions: [
+            {
+                question: "Q81. The anterior nucleus of the thalamus connects to the:",
+                options: [
+                    "A) Cingulate gyrus",
+                    "B) Insular cortex",
+                    "C) Pre-central gyrus",
+                    "D) Post-central gyrus",
+                    "E) Superior temporal gyrus"
+                ],
+                answer: "A) Cingulate gyrus"
+            },
+             {
+                question: "Q82. The lateral geniculate nucleus of the thalamus connects to the:",
+                options: [
+                    "A) Auditory cortex",
+                    "B) Orbito frontal cortex",
+                    "C) Motor cortex",
+                    "D) Somatosensory cortex",
+                    "E) Visual cortex"
+                ],
+                answer: "E) Visual cortex"
+            },
+             {
+                question: "Q83. The medial geniculate nucleus of the thalamus connects to the:",
+                options: [
+                    "A) Auditory cortex",
+                    "B) Motor cortex",
+                    "C) Posterior parietal cortex",
+                    "D) Somatosensory cortex",
+                    "E) Visual cortex"
+                ],
+                answer: "A) Auditory cortex"
+            }
+        ]
+    },
+     {
+        title: "23. Cortex, Thalamus, and Hypothalamus - Hypothalamus",
+        questions: [
+            {
+                question: "Q84. The posterior pituitary contains processes of neurons that release:",
+                options: [
+                    "A) Adrenaline",
+                    "B) Dopamine",
+                    "C) GnRH (gonadotrophin releasing hormone)",
+                    "D) Growth hormone",
+                    "E) Oxytocin"
+                ],
+                answer: "E) Oxytocin"
+            },
+            {
+                question: "Q85. The mammillary body is concerned with:",
+                options: [
+                    "A) Control of prolactin",
+                    "B) Growth",
+                    "C) Milk ejection",
+                    "D) Memory",
+                    "E) Smell"
+                ],
+                answer: "D) Memory"
+            },
+             {
+                question: "Q86. The suprachiasmatic nucleus is concerned with:",
+                options: [
+                    "A) Appetite regulation",
+                    "B) Circadian rhythms",
+                    "C) Fertility",
+                    "D) Milk ejection",
+                    "E) Memory formation"
+                ],
+                answer: "B) Circadian rhythms"
+            },
+             {
+                question: "Q87. The hypophyseal portal system is responsible for conveying factors to the:",
+                options: [
+                    "A) Anterior pituitary",
+                    "B) Circumventricular organs",
+                    "C) Hypothalamus",
+                    "D) Olfactory bulb",
+                    "E) Posterior pituitary"
+                ],
+                answer: "A) Anterior pituitary"
+            },
+             {
+                question: "Q88. The 'hunger center' of the hypothalamus is the:",
+                options: [
+                    "A) Lateral hypothalamus",
+                    "B) Median eminence",
+                    "C) Paraventricular nucleus",
+                    "D) Posterior pituitary",
+                    "E) Ventromedial hypothalamus"
+                ],
+                answer: "A) Lateral hypothalamus"
+            }
+        ]
+    },
+     {
+        title: "24. Higher Cerebral Functions - Sleep",
+        questions: [
+            {
+                question: "Q89. The circadian rhythms of the body are set by the:",
+                options: [
+                    "A) Epithalamus",
+                    "B) Mammillary bodies",
+                    "C) Pituitary",
+                    "D) Suprachiasmatic nucleus",
+                    "E) Supraoptic nucleus"
+                ],
+                answer: "D) Suprachiasmatic nucleus"
+            },
+            {
+                question: "Q90. The pineal gland lies in the:",
+                options: [
+                    "A) Epithalamus",
+                    "B) Hypothalamus",
+                    "C) Metathalamus",
+                    "D) Subthalamus",
+                    "E) Thalamus"
+                ],
+                answer: "A) Epithalamus"
+            },
+             {
+                question: "Q91. Rapid eye movement sleep is associated with:",
+                options: [
+                    "A) Awakening",
+                    "B) Deep sleep",
+                    "C) Dreaming",
+                    "D) Light sleep",
+                    "E) Slow-wave sleep"
+                ],
+                answer: "C) Dreaming"
+            }
+        ]
+    },
+     {
+        title: "24. Higher Cerebral Functions - Components and Connections of the Limbic System",
+        questions: [
+            {
+                question: "Q92. The major output pathway from the amygdala is the:",
+                options: [
+                    "A) Fornix",
+                    "B) Hypophyseal tract",
+                    "C) Lamina terminalis",
+                    "D) Stria terminalis",
+                    "E) Stria vascularis"
+                ],
+                answer: "D) Stria terminalis"
+            },
+            {
+                question: "Q93. The major target of output from the amygdala is the:",
+                options: [
+                    "A) Hippocampus",
+                    "B) Hypothalamus",
+                    "C) Pineal gland",
+                    "D) Pituitary",
+                    "E) Thalamus"
+                ],
+                answer: "B) Hypothalamus"
+            },
+            {
+                question: "Q94. The anterior thalamus receives a major input from the:",
+                options: [
+                    "A) Mammillary body linked to the output of the amygdala",
+                    "B) Mammillary body linked to the output of the hippocampus",
+                    "C) Paraventricular nucleus of hypothalamus",
+                    "D) Pulvinar linked to the output of the hippocampus",
+                    "E) Supraoptic nucleus of hypothalamus"
+                ],
+                answer: "B) Mammillary body linked to the output of the hippocampus"
+            }
+        ]
+    },
+     {
+        title: "24. Higher Cerebral Functions - Memory",
+        questions: [
+            {
+                question: "Q95. The hippocampus is a site of long-term potentiation associated with:",
+                options: [
+                    "A) Motor memory",
+                    "B) Sensory memory",
+                    "C) Short-term memory",
+                    "D) Spatial memory",
+                    "E) Verbal memory"
+                ],
+                answer: "D) Spatial memory"
+            },
+             {
+                question: "Q96. Korsakov's syndrome is characterized by:",
+                options: [
+                    "A) Excessive food intake due to a lesion of the hypothalamus",
+                    "B) Degeneration of the medium spiny stellate cells of the caudate and putamen",
+                    "C) Loss of motivation associated with degeneration in the frontal lobes",
+                    "D) Memory loss due to excessive alcohol intake and reduced vitamin B1",
+                    "E) Memory loss due to a lesion in the fornix"
+                ],
+                answer: "D) Memory loss due to excessive alcohol intake and reduced vitamin B1"
+            }
+        ]
+    },
+     {
+        title: "25. Psychiatric Disorders and Psychopharmacology - Mood Disorders",
+        questions: [
+            {
+                question: "Q97. Which of the following is NOT classified as an antidepressant?",
+                options: [
+                    "A) Monoamine oxidase inhibitors",
+                    "B) Selective serotonin reuptake inhibitors (SSRIs)",
+                    "C) Tricyclic antidepressants",
+                    "D) Benzodiazepines",
+                    "E) Serotonin-norepinephrine reuptake inhibitors (SNRIs)"
+                ],
+                answer: "D) Benzodiazepines"
+            },
+             {
+                question: "Q98. The major neurotransmitter that when deficient is associated with depression is:",
+                options: [
+                    "A) Adrenalin",
+                    "B) Dopamine",
+                    "C) Noradrenalin",
+                    "D) Serotonin",
+                    "E) Substance P"
+                ],
+                answer: "D) Serotonin"
+            }
+        ]
+    },
+    {
+        title: "25. Psychiatric Disorders and Psychopharmacology - Schizophrenia",
+        questions: [
+            {
+                question: "Q99. Antipsychotic drugs primarily act by:",
+                options: [
+                    "A) Enhancing GABA transmission",
+                    "B) Blocking dopamine D2 receptors",
+                    "C) Enhancing serotonin transmission",
+                    "D) Blocking glutamate receptors",
+                    "E) Enhancing acetylcholine transmission"
+                ],
+                answer: "B) Blocking dopamine D2 receptors"
+            },
+            {
+                question: "Q100. Clozapine differs from typical antipsychotics in that it:",
+                options: [
+                    "A) Has no effect on dopamine receptors",
+                    "B) Only blocks dopamine D1 receptors",
+                    "C) Has affinity for multiple neurotransmitter receptors",
+                    "D) Is a pure serotonin antagonist",
+                    "E) Causes more extrapyramidal side effects"
+                ],
+                answer: "C) Has affinity for multiple neurotransmitter receptors"
+            }
+        ]
+    },
+     {
+        title: "25. Psychiatric Disorders and Psychopharmacology - Cognitive Disorders of Old Age",
+        questions: [
+            {
+                question: "Q101. In early stages of Alzheimer's disease, neurons degenerate in the:",
+                options: [
+                    "A) Basal forebrain",
+                    "B) Basal ganglia",
+                    "C) Cerebral cortex",
+                    "D) Hypothalamus",
+                    "E) Substantia nigra"
+                ],
+                answer: "A) Basal forebrain"
+            },
+            {
+                question: "Q102. In Alzheimer's disease, neurons show degenerative changes including deposition of:",
+                options: [
+                    "A) Amyloid",
+                    "B) Glycogen",
+                    "C) Insulin",
+                    "D) Melatonin",
+                    "E) Tubulin"
+                ],
+                answer: "A) Amyloid"
+            },
+             {
+                question: "Q103. Inhibitors of acetylcholinesterase are used as a treatment for dementia to:",
+                options: [
+                    "A) Block acetylcholine receptors",
+                    "B) Reduce the breakdown of acetylcholine",
+                    "C) Remove excess acetylcholine",
+                    "D) Stimulate directly muscarinic receptors",
+                    "E) Stimulate directly nicotinic receptors"
+                ],
+                answer: "B) Reduce the breakdown of acetylcholine"
+            }
+        ]
+    },
+     {
+        title: "25. Psychiatric Disorders and Psychopharmacology - Eating Disorders",
+        questions: [
+            {
+                question: "Q104. Which neurotransmitter system is implicated in the pathophysiology of anorexia nervosa?",
+                options: [
+                    "A) GABA",
+                    "B) Glutamate",
+                    "C) Noradrenaline",
+                    "D) Dopamine",
+                    "E) Serotonin"
+                ],
+                answer: "E) Serotonin"
+            }
+        ]
+    },
+     {
+        title: "25. Psychiatric Disorders and Psychopharmacology - Drug Addiction and Recreational Drugs",
+        questions: [
+            {
+                question: "Q105. The nucleus accumbens, a key brain structure in addiction, is rich in:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Dopamine",
+                    "C) GABA",
+                    "D) Glutamate",
+                    "E) Serotonin"
+                ],
+                answer: "B) Dopamine"
+            },
+            {
+                question: "Q106. Which recreational drug acts primarily by increasing dopamine, noradrenaline and serotonin levels in the brain?",
+                options: [
+                    "A) Alcohol",
+                    "B) Cannabis",
+                    "C) Cocaine",
+                    "D) Heroin",
+                    "E) LSD"
+                ],
+                answer: "C) Cocaine"
+            }
+        ]
+    },
+    {
+        title: "Additional Questions Covering Multiple Topics",
+        questions: [
+            {
+                question: "Q107. A stroke affecting the posterior limb of the internal capsule would result in:",
+                options: [
+                    "A) Sensory loss on the ipsilateral side",
+                    "B) Motor weakness on the ipsilateral side",
+                    "C) Motor weakness on the contralateral side",
+                    "D) Visual field defects",
+                    "E) Aphasia"
+                ],
+                answer: "C) Motor weakness on the contralateral side"
+            },
+            {
+                question: "Q108. A lesion in the optic chiasm would most likely cause:",
+                options: [
+                    "A) Complete blindness in the right eye",
+                    "B) Complete blindness in the left eye",
+                    "C) Bitemporal hemianopia",
+                    "D) Right homonymous hemianopia",
+                    "E) Left homonymous hemianopia"
+                ],
+                answer: "C) Bitemporal hemianopia"
+            },
+             {
+                question: "Q109. The neurotransmitter at the neuromuscular junction is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Dopamine",
+                    "C) GABA",
+                    "D) Glutamate",
+                    "E) Glycine"
+                ],
+                answer: "A) Acetylcholine"
+            },
+             {
+                question: "Q110. Which of the following structures contains the cell bodies of the dorsal root ganglion?",
+                options: [
+                    "A) Dorsal horn of spinal cord",
+                    "B) Ventral horn of spinal cord",
+                    "C) Dorsal root of spinal nerve",
+                    "D) Ventral root of spinal nerve",
+                    "E) Peripheral nerve"
+                ],
+                answer: "C) Dorsal root of spinal nerve"
+            },
+            {
+                question: "Q111. Which of the following is NOT a feature of Parkinson's disease?",
+                options: [
+                    "A) Bradykinesia",
+                    "B) Rigidity",
+                    "C) Resting tremor",
+                    "D) Postural instability",
+                    "E) Ataxia"
+                ],
+                answer: "E) Ataxia"
+            },
+             {
+                question: "Q112. The corneal reflex involves which cranial nerves?",
+                options: [
+                    "A) Optic and oculomotor",
+                    "B) Trigeminal and facial",
+                    "C) Trigeminal and abducens",
+                    "D) Facial and vestibulocochlear",
+                    "E) Glossopharyngeal and vagus"
+                ],
+                answer: "B) Trigeminal and facial"
+            },
+             {
+                question: "Q113. A patient with damage to the pyramidal tract at the level of the internal capsule would exhibit:",
+                options: [
+                    "A) Flaccid paralysis",
+                    "B) Fasciculations",
+                    "C) Muscle atrophy",
+                    "D) Spastic paralysis",
+                    "E) Loss of all sensation"
+                ],
+                answer: "D) Spastic paralysis"
+            },
+             {
+                question: "Q114. Wernicke's area is involved in:",
+                options: [
+                    "A) Motor planning",
+                    "B) Visual processing",
+                    "C) Language comprehension",
+                    "D) Language production",
+                    "E) Emotional processing"
+                ],
+                answer: "C) Language comprehension"
+            },
+            {
+                question: "Q115. Broca's area is located in the:",
+                options: [
+                    "A) Frontal lobe",
+                    "B) Parietal lobe",
+                    "C) Temporal lobe",
+                    "D) Occipital lobe",
+                    "E) Limbic lobe"
+                ],
+                answer: "A) Frontal lobe"
+            },
+             {
+                question: "Q116. The substantia nigra is located in the:",
+                options: [
+                    "A) Medulla",
+                    "B) Pons",
+                    "C) Midbrain",
+                    "D) Diencephalon",
+                    "E) Telencephalon"
+                ],
+                answer: "C) Midbrain"
+            },
+            {
+                question: "Q117. Which of the following is NOT a function of the cerebellum?",
+                options: [
+                    "A) Coordination of voluntary movements",
+                    "B) Maintenance of posture",
+                    "C) Motor learning",
+                    "D) Language processing",
+                    "E) Balance control"
+                ],
+                answer: "D) Language processing"
+            },
+            {
+                question: "Q118. The receptors for proprioception are found in:",
+                options: [
+                    "A) Golgi tendon organs and muscle spindles",
+                    "B) Pacinian corpuscles",
+                    "C) Meissner's corpuscles",
+                    "D) Merkel's discs",
+                    "E) Free nerve endings"
+                ],
+                answer: "A) Golgi tendon organs and muscle spindles"
+            },
+             {
+                question: "Q119. The corpus callosum connects:",
+                options: [
+                    "A) The cerebrum to the cerebellum",
+                    "B) The right and left cerebral hemispheres",
+                    "C) The thalamus to the hypothalamus",
+                    "D) The midbrain to the pons",
+                    "E) The spinal cord to the medulla"
+                ],
+                answer: "B) The right and left cerebral hemispheres"
+            },
+             {
+                question: "Q120. The blood supply to the medial surface of the cerebral hemisphere comes primarily from the:",
+                options: [
+                    "A) Anterior cerebral artery",
+                    "B) Middle cerebral artery",
+                    "C) Posterior cerebral artery",
+                    "D) Basilar artery",
+                    "E) Vertebral artery"
+                ],
+                answer: "A) Anterior cerebral artery"
+            },
+             {
+                question: "Q121. The major function of melatonin is:",
+                options: [
+                    "A) Regulation of blood pressure",
+                    "B) Regulation of body temperature",
+                    "C) Regulation of sleep-wake cycle",
+                    "D) Regulation of appetite",
+                    "E) Regulation of mood"
+                ],
+                answer: "C) Regulation of sleep-wake cycle"
+            },
+             {
+                question: "Q122. A lesion of the vagus nerve would affect:",
+                options: [
+                    "A) Eye movements",
+                    "B) Facial expressions",
+                    "C) Gastrointestinal function",
+                    "D) Smell",
+                    "E) Taste on the anterior two-thirds of the tongue"
+                ],
+                answer: "C) Gastrointestinal function"
+            },
+            {
+                question: "Q123. The main function of microglia is:",
+                options: [
+                    "A) Production of myelin",
+                    "B) Support of neurons",
+                    "C) Immune defense",
+                    "D) Formation of blood-brain barrier",
+                    "E) Production of cerebrospinal fluid"
+                ],
+                answer: "C) Immune defense"
+            },
+             {
+                question: "Q124. Which of the following is a monoamine neurotransmitter?",
+                options: [
+                    "A) Acetylcholine",
+                    "B) GABA",
+                    "C) Glutamate",
+                    "D) Glycine",
+                    "E) Serotonin"
+                ],
+                answer: "E) Serotonin"
+            },
+             {
+                question: "Q125. The term \"decussation\" refers to:",
+                options: [
+                    "A) Axonal sprouting",
+                    "B) Crossing of nerve fibers from one side to the other",
+                    "C) Convergence of multiple inputs onto a single neuron",
+                    "D) Divergence of a single input to multiple targets",
+                    "E) Regeneration of damaged axons"
+                ],
+                answer: "B) Crossing of nerve fibers from one side to the other"
+            },
+             {
+                question: "Q126. The fornix connects:",
+                options: [
+                    "A) The hippocampus to the mammillary bodies",
+                    "B) The amygdala to the hypothalamus",
+                    "C) The thalamus to the cerebral cortex",
+                    "D) The hypothalamus to the pituitary gland",
+                    "E) The cerebellum to the thalamus"
+                ],
+                answer: "A) The hippocampus to the mammillary bodies"
+            },
+             {
+                question: "Q127. Long-term potentiation is primarily a mechanism for:",
+                options: [
+                    "A) Muscle contraction",
+                    "B) Neurotransmitter release",
+                    "C) Synaptic plasticity and memory formation",
+                    "D) Neurotransmitter reuptake",
+                    "E) Action potential propagation"
+                ],
+                answer: "C) Synaptic plasticity and memory formation"
+            },
+            {
+                question: "Q128. Which of the following structures is NOT part of the limbic system?",
+                options: [
+                    "A) Amygdala",
+                    "B) Hippocampus",
+                    "C) Cingulate gyrus",
+                    "D) Red nucleus",
+                    "E) Fornix"
+                ],
+                answer: "D) Red nucleus"
+            },
+             {
+                question: "Q129. A patient with damage to Wernicke's area would most likely exhibit:",
+                options: [
+                    "A) Inability to produce speech",
+                    "B) Inability to understand speech",
+                    "C) Inability to read",
+                    "D) Inability to write",
+                    "E) Memory loss"
+                ],
+                answer: "B) Inability to understand speech"
+            },
+             {
+                question: "Q130. The major pathway involved in the transmission of fine touch and proprioception is the:",
+                options: [
+                    "A) Corticospinal tract",
+                    "B) Spinothalamic tract",
+                    "C) Spinocerebellar tract",
+                    "D) Dorsal column-medial lemniscus pathway",
+                    "E) Reticulospinal tract"
+                ],
+                answer: "D) Dorsal column-medial lemniscus pathway"
+            },
+            {
+                question: "Q131. Multiple sclerosis primarily affects:",
+                options: [
+                    "A) Motor neurons",
+                    "B) Myelin sheaths",
+                    "C) Basal ganglia",
+                    "D) Microglia",
+                    "E) Astrocytes"
+                ],
+                answer: "B) Myelin sheaths"
+            },
+             {
+                question: "Q132. The neurotransmitter implicated in schizophrenia is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Dopamine",
+                    "C) GABA",
+                    "D) Glycine",
+                    "E) Serotonin"
+                ],
+                answer: "B) Dopamine"
+            },
+             {
+                question: "Q133. Damage to the right parietal lobe may result in:",
+                options: [
+                    "A) Aphasia",
+                    "B) Contralateral neglect syndrome",
+                    "C) Memory loss",
+                    "D) Paralysis",
+                    "E) Visual field defects"
+                ],
+                answer: "B) Contralateral neglect syndrome"
+            },
+             {
+                question: "Q134. The major inhibitory neurotransmitter in the spinal cord is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Dopamine",
+                    "C) GABA",
+                    "D) Glutamate",
+                    "E) Glycine"
+                ],
+                answer: "E) Glycine"
+            },
+             {
+                question: "Q135. Which of the following is a feature of Huntington's disease?",
+                options: [
+                    "A) Bradykinesia",
+                    "B) Chorea",
+                    "C) Resting tremor",
+                    "D) Rigidity",
+                    "E) Spasticity"
+                ],
+                answer: "B) Chorea"
+            },
+             {
+                question: "Q136. The primary visual cortex is located in the:",
+                options: [
+                    "A) Frontal lobe",
+                    "B) Parietal lobe",
+                    "C) Temporal lobe",
+                    "D) Occipital lobe",
+                    "E) Insula"
+                ],
+                answer: "D) Occipital lobe"
+            },
+             {
+                question: "Q137. A lesion in the medulla would likely affect:",
+                options: [
+                    "A) Hearing",
+                    "B) Language",
+                    "C) Respiration",
+                    "D) Vision",
+                    "E) Higher cognitive functions"
+                ],
+                answer: "C) Respiration"
+            },
+             {
+                question: "Q138. The blood-brain barrier is formed by:",
+                options: [
+                    "A) Astrocytes",
+                    "B) Tight junctions between endothelial cells",
+                    "C) Microglia",
+                    "D) Oligodendrocytes",
+                    "E) Ependymal cells"
+                ],
+                answer: "B) Tight junctions between endothelial cells"
+            },
+             {
+                question: "Q139. The nucleus that serves as the primary relay for visual information to the cortex is the:",
+                options: [
+                    "A) Lateral geniculate nucleus",
+                    "B) Medial geniculate nucleus",
+                    "C) Red nucleus",
+                    "D) Subthalamic nucleus",
+                    "E) Vestibular nucleus"
+                ],
+                answer: "A) Lateral geniculate nucleus"
+            },
+             {
+                question: "Q140. The reticular formation is involved in:",
+                options: [
+                    "A) Memory consolidation",
+                    "B) Language processing",
+                    "C) Arousal and alertness",
+                    "D) Visual processing",
+                    "E) Fine motor control"
+                ],
+                answer: "C) Arousal and alertness"
+            },
+             {
+                question: "Q141. The major excitatory neurotransmitter in the CNS is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) Dopamine",
+                    "C) GABA",
+                    "D) Glutamate",
+                    "E) Glycine"
+                ],
+                answer: "D) Glutamate"
+            },
+             {
+                question: "Q142. A cerebellar lesion would most likely cause:",
+                options: [
+                    "A) Aphasia",
+                    "B) Ataxia",
+                    "C) Blindness",
+                    "D) Dementia",
+                    "E) Paralysis"
+                ],
+                answer: "B) Ataxia"
+            },
+             {
+                question: "Q143. The structure that controls the shape of the lens is the:",
+                options: [
+                    "A) Cornea",
+                    "B) Ciliary muscle",
+                    "C) Iris",
+                    "D) Retina",
+                    "E) Sclera"
+                ],
+                answer: "B) Ciliary muscle"
+            },
+             {
+                question: "Q144. The superior colliculus is involved in:",
+                options: [
+                    "A) Auditory processing",
+                    "B) Eye movements",
+                    "C) Pain perception",
+                    "D) Respiratory control",
+                    "E) Taste sensation"
+                ],
+                answer: "B) Eye movements"
+            },
+             {
+                question: "Q145. The autonomic nervous system consists of:",
+                options: [
+                    "A) Somatic motor and sensory components",
+                    "B) Sympathetic and parasympathetic divisions",
+                    "C) Dorsal and ventral roots",
+                    "D) Ascending and descending tracts",
+                    "E) Pyramidal and extrapyramidal systems"
+                ],
+                answer: "B) Sympathetic and parasympathetic divisions"
+            },
+             {
+                question: "Q146. A lesion in the left visual cortex would result in:",
+                options: [
+                    "A) Complete blindness in the left eye",
+                    "B) Complete blindness in the right eye",
+                    "C) Right homonymous hemianopia",
+                    "D) Left homonymous hemianopia",
+                    "E) Bitemporal hemianopia"
+                ],
+                answer: "C) Right homonymous hemianopia"
+            },
+            {
+                question: "Q147. The main neurochemical abnormality in Parkinson's disease is:",
+                options: [
+                    "A) Decreased acetylcholine in the basal forebrain",
+                    "B) Decreased dopamine in the substantia nigra",
+                    "C) Decreased GABA in the striatum",
+                    "D) Decreased glutamate in the cortex",
+                    "E) Decreased serotonin in the raphe nuclei"
+                ],
+                answer: "B) Decreased dopamine in the substantia nigra"
+            },
+            {
+                question: "Q148. The nerve that controls pupillary constriction is the:",
+                options: [
+                    "A) Abducens",
+                    "B) Facial",
+                    "C) Oculomotor",
+                    "D) Optic",
+                    "E) Trochlear"
+                ],
+                answer: "C) Oculomotor"
+            },
+            {
+                question: "Q149. The main function of the basal ganglia is:",
+                options: [
+                    "A) Balance and coordination",
+                    "B) Control of autonomic functions",
+                    "C) Language processing",
+                    "D) Memory formation",
+                    "E) Motor control and selection of voluntary movements"
+                ],
+                answer: "E) Motor control and selection of voluntary movements"
+            },
+             {
+                question: "Q150. The major ascending pathway for pain and temperature sensation is the:",
+                options: [
+                    "A) Corticospinal tract",
+                    "B) Dorsal column-medial lemniscus pathway",
+                    "C) Spinocerebellar tract",
+                    "D) Spinothalamic tract",
+                    "E) Vestibulospinal tract"
+                ],
+                answer: "D) Spinothalamic tract"
+            }
+        ]
+    },
+     {
+        title: "16. Head & Neck - Additional Questions",
+        questions: [
+            {
+                question: "Q151. The cavernous sinus contains all of the following structures EXCEPT:",
+                options: [
+                    "A) Internal carotid artery",
+                    "B) Oculomotor nerve",
+                    "C) Trigeminal ganglion",
+                    "D) Trochlear nerve",
+                    "E) Abducens nerve"
+                ],
+                answer: "C) Trigeminal ganglion"
+            },
+             {
+                question: "Q152. The foramen magnum transmits:",
+                options: [
+                    "A) Facial and vestibulocochlear nerves",
+                    "B) Glossopharyngeal, vagus, and accessory nerves",
+                    "C) Hypoglossal nerve",
+                    "D) Medulla oblongata and vertebral arteries",
+                    "E) Optic nerve"
+                ],
+                answer: "D) Medulla oblongata and vertebral arteries"
+            },
+             {
+                question: "Q153. The cribriform plate of the ethmoid bone transmits:",
+                options: [
+                    "A) Olfactory nerve filaments",
+                    "B) Optic nerve",
+                    "C) Maxillary division of trigeminal nerve",
+                    "D) Mandibular division of trigeminal nerve",
+                    "E) Internal carotid artery"
+                ],
+                answer: "A) Olfactory nerve filaments"
+            },
+             {
+                question: "Q154. The jugular foramen transmits all of the following EXCEPT:",
+                options: [
+                    "A) Glossopharyngeal nerve",
+                    "B) Vagus nerve",
+                    "C) Accessory nerve",
+                    "D) Hypoglossal nerve",
+                    "E) Internal jugular vein"
+                ],
+                answer: "D) Hypoglossal nerve"
+            },
+             {
+                question: "Q155. The superior orbital fissure transmits all of the following EXCEPT:",
+                options: [
+                    "A) Oculomotor nerve",
+                    "B) Trochlear nerve",
+                    "C) Ophthalmic division of trigeminal nerve",
+                    "D) Abducens nerve",
+                    "E) Optic nerve"
+                ],
+                answer: "E) Optic nerve"
+            }
+        ]
+    },
+    {
+        title: "17. Embryonic Development - Additional Questions",
+        questions: [
+            {
+                question: "Q156. The neural crest gives rise to:",
+                options: [
+                    "A) All neurons of the central nervous system",
+                    "B) All oligodendrocytes",
+                    "C) Dorsal root ganglion cells",
+                    "D) Motor neurons",
+                    "E) Microglia"
+                ],
+                answer: "C) Dorsal root ganglion cells"
+            },
+             {
+                question: "Q157. Which of the following is NOT derived from the neural crest?",
+                options: [
+                    "A) Adrenal medulla",
+                    "B) Dorsal root ganglia",
+                    "C) Motor neurons of the spinal cord",
+                    "D) Melanocytes",
+                    "E) Schwann cells"
+                ],
+                answer: "C) Motor neurons of the spinal cord"
+            },
+             {
+                question: "Q158. During embryonic development, the cerebellum develops from:",
+                options: [
+                    "A) Prosencephalon",
+                    "B) Mesencephalon",
+                    "C) Rhombencephalon",
+                    "D) Telencephalon",
+                    "E) Diencephalon"
+                ],
+                answer: "C) Rhombencephalon"
+            },
+             {
+                question: "Q159. The cerebral cortex develops from:",
+                options: [
+                    "A) Myelencephalon",
+                    "B) Metencephalon",
+                    "C) Mesencephalon",
+                    "D) Diencephalon",
+                    "E) Telencephalon"
+                ],
+                answer: "E) Telencephalon"
+            },
+             {
+                question: "Q160. Anencephaly results from failure of:",
+                options: [
+                    "A) Neural tube closure at the cephalic end",
+                    "B) Neural tube closure at the caudal end",
+                    "C) Separation of the prosencephalon",
+                    "D) Migration of neural crest cells",
+                    "E) Development of the neural plate"
+                ],
+                answer: "A) Neural tube closure at the cephalic end"
+            }
+        ]
+    },
+     {
+        title: "18. CNS Morphology - Additional Questions",
+        questions: [
+            {
+                question: "Q161. CSF flows from the lateral ventricles to the third ventricle via the:",
+                options: [
+                    "A) Aqueduct of Sylvius",
+                    "B) Foramen of Luschka",
+                    "C) Foramen of Magendie",
+                    "D) Foramen of Monro",
+                    "E) Central canal"
+                ],
+                answer: "D) Foramen of Monro"
+            },
+             {
+                question: "Q162. The dural venous sinus that runs along the superior margin of the falx cerebri is the:",
+                options: [
+                    "A) Cavernous sinus",
+                    "B) Inferior sagittal sinus",
+                    "C) Superior sagittal sinus",
+                    "D) Straight sinus",
+                    "E) Transverse sinus"
+                ],
+                answer: "C) Superior sagittal sinus"
+            },
+            {
+                question: "Q163. The lateral ventricles are located in the:",
+                options: [
+                    "A) Brainstem",
+                    "B) Cerebellum",
+                    "C) Cerebral hemispheres",
+                    "D) Diencephalon",
+                    "E) Medulla"
+                ],
+                answer: "C) Cerebral hemispheres"
+            },
+            {
+                question: "Q164. The cerebral aqueduct is located in the:",
+                options: [
+                    "A) Cerebral hemispheres",
+                    "B) Diencephalon",
+                    "C) Medulla",
+                    "D) Midbrain",
+                    "E) Pons"
+                ],
+                answer: "D) Midbrain"
+            },
+             {
+                question: "Q165. The gray matter forming the floor of the fourth ventricle is part of the:",
+                options: [
+                    "A) Cerebellum",
+                    "B) Cerebral cortex",
+                    "C) Diencephalon",
+                    "D) Midbrain",
+                    "E) Pons and medulla"
+                ],
+                answer: "E) Pons and medulla"
+            }
+        ]
+    },
+     {
+        title: "19. Principles of Neuronal Function - Additional Questions",
+        questions: [
+             {
+                question: "Q166. The most abundant type of glial cell in the CNS is:",
+                options: [
+                    "A) Astrocytes",
+                    "B) Ependymal cells",
+                    "C) Microglia",
+                    "D) Oligodendrocytes",
+                    "E) Schwann cells"
+                ],
+                answer: "A) Astrocytes"
+            },
+             {
+                question: "Q167. Which of the following is primarily responsible for synaptic pruning during development?",
+                options: [
+                    "A) Astrocytes",
+                    "B) Ependymal cells",
+                    "C) Microglia",
+                    "D) Oligodendrocytes",
+                    "E) Schwann cells"
+                ],
+                answer: "C) Microglia"
+            },
+            {
+                question: "Q168. The neurotransmitter receptor that requires coincident binding of glutamate and membrane depolarization for activation is:",
+                options: [
+                    "A) AMPA receptor",
+                    "B) GABA-A receptor",
+                    "C) Kainate receptor",
+                    "D) NMDA receptor",
+                    "E) mGluR receptor"
+                ],
+                answer: "D) NMDA receptor"
+            },
+             {
+                question: "Q169. Long-term potentiation in the hippocampus primarily involves:",
+                options: [
+                    "A) Decreased presynaptic glutamate release",
+                    "B) Increased number of GABA receptors",
+                    "C) Increased number of postsynaptic AMPA receptors",
+                    "D) Decreased postsynaptic sensitivity to glutamate",
+                    "E) Increased inhibitory synaptic transmission"
+                ],
+                answer: "C) Increased number of postsynaptic AMPA receptors"
+            },
+            {
+                question: "Q170. The propagation of action potentials along myelinated axons depends on:",
+                options: [
+                    "A) Continuous conduction",
+                    "B) Decremental conduction",
+                    "C) Electrotonic spread",
+                    "D) Saltatory conduction",
+                    "E) Synaptic transmission"
+                ],
+                answer: "D) Saltatory conduction"
+            }
+        ]
+    },
+     {
+        title: "20. Sensory Systems - Additional Questions",
+        questions: [
+             {
+                question: "Q171. The structure in the eye responsible for accommodation is the:",
+                options: [
+                    "A) Cornea",
+                    "B) Iris",
+                    "C) Lens",
+                    "D) Retina",
+                    "E) Vitreous humor"
+                ],
+                answer: "C) Lens"
+            },
+             {
+                question: "Q172. In the retina, color vision is primarily mediated by:",
+                options: [
+                    "A) Amacrine cells",
+                    "B) Bipolar cells",
+                    "C) Cone photoreceptors",
+                    "D) Ganglion cells",
+                    "E) Rod photoreceptors"
+                ],
+                answer: "C) Cone photoreceptors"
+            },
+             {
+                question: "Q173. The transduction of sound waves into neural signals occurs in:",
+                options: [
+                    "A) Basilar membrane",
+                    "B) Organ of Corti",
+                    "C) Oval window",
+                    "D) Semicircular canals",
+                    "E) Tympanic membrane"
+                ],
+                answer: "B) Organ of Corti"
+            },
+             {
+                question: "Q174. The perception of high-frequency sounds occurs at which part of the basilar membrane?",
+                options: [
+                    "A) Apex of the cochlea",
+                    "B) Base of the cochlea",
+                    "C) Middle of the cochlea",
+                    "D) Throughout the entire basilar membrane",
+                    "E) None of the above"
+                ],
+                answer: "B) Base of the cochlea"
+            },
+             {
+                question: "Q175. Olfactory receptor neurons project directly to the:",
+                options: [
+                    "A) Amygdala",
+                    "B) Hypothalamus",
+                    "C) Olfactory bulb",
+                    "D) Piriform cortex",
+                    "E) Thalamus"
+                ],
+                answer: "C) Olfactory bulb"
+            }
+        ]
+    },
+     {
+        title: "21. Motor Systems - Additional Questions",
+        questions: [
+            {
+                question: "Q176. The extrapyramidal system includes all of the following EXCEPT:",
+                options: [
+                    "A) Basal ganglia",
+                    "B) Cerebellum",
+                    "C) Corticospinal tract",
+                    "D) Reticulospinal tract",
+                    "E) Vestibulospinal tract"
+                ],
+                answer: "C) Corticospinal tract"
+            },
+             {
+                question: "Q177. The neurotransmitter used by the efferent limb of the gamma motor neuron circuit is:",
+                options: [
+                    "A) Acetylcholine",
+                    "B) GABA",
+                    "C) Glutamate",
+                    "D) Glycine",
+                    "E) Norepinephrine"
+                ],
+                answer: "A) Acetylcholine"
+            },
+             {
+                question: "Q178. The cerebellum receives climbing fibers from:",
+                options: [
+                    "A) Dentate nucleus",
+                    "B) Inferior olivary nucleus",
+                    "C) Pontine nuclei",
+                    "D) Red nucleus",
+                    "E) Vestibular nuclei"
+                ],
+                answer: "B) Inferior olivary nucleus"
+            },
+             {
+                question: "Q179. The region of the cerebellum that receives input from the vestibular system is the:",
+                options: [
+                    "A) Anterior lobe",
+                    "B) Flocculonodular lobe",
+                    "C) Posterior lobe",
+                    "D) Dentate nucleus",
+                    "E) Vermis"
+                ],
+                answer: "B) Flocculonodular lobe"
+            },
+            {
+                question: "Q180. The direct pathway in basal ganglia circuitry involves sequential connections from:",
+                options: [
+                    "A) Cortex → Striatum → GPi → Thalamus → Cortex",
+                    "B) Cortex → Striatum → GPe → STN → GPi → Thalamus → Cortex",
+                    "C) Cortex → STN → GPi → Thalamus → Cortex",
+                    "D) Striatum → GPe → STN → GPi → Thalamus",
+                    "E) Thalamus → Striatum → GPi → Thalamus"
+                ],
+                answer: "A) Cortex → Striatum → GPi → Thalamus → Cortex"
+            }
+        ]
+    },
+     {
+        title: "22. Cranial Nerves - Additional Questions",
+        questions: [
+            {
+                question: "Q181. Bell's palsy is a condition affecting:",
+                options: [
+                    "A) Facial nerve (VII)",
+                    "B) Glossopharyngeal nerve (IX)",
+                    "C) Hypoglossal nerve (XII)",
+                    "D) Trigeminal nerve (V)",
+                    "E) Vagus nerve (X)"
+                ],
+                answer: "A) Facial nerve (VII)"
+            },
+             {
+                question: "Q182. Damage to the recurrent laryngeal branch of the vagus nerve results in:",
+                options: [
+                    "A) Difficulty in swallowing",
+                    "B) Loss of gag reflex",
+                    "C) Loss of sensation in the larynx",
+                    "D) Vocal cord paralysis",
+                    "E) All of the above"
+                ],
+                answer: "D) Vocal cord paralysis"
+            },
+             {
+                question: "Q183. Which cranial nerve has a parasympathetic component that regulates pupillary constriction?",
+                options: [
+                    "A) Facial (VII)",
+                    "B) Glossopharyngeal (IX)",
+                    "C) Oculomotor (III)",
+                    "D) Trigeminal (V)",
+                    "E) Vagus (X)"
+                ],
+                answer: "C) Oculomotor (III)"
+            },
+             {
+                question: "Q184. Horner's syndrome results from damage to:",
+                options: [
+                    "A) Facial nerve",
+                    "B) Oculomotor nerve",
+                    "C) Optic nerve",
+                    "D) Sympathetic innervation to the eye",
+                    "E) Trigeminal nerve"
+                ],
+                answer: "D) Sympathetic innervation to the eye"
+            },
+             {
+                question: "Q185. The taste sensation from the posterior third of the tongue is carried by the:",
+                options: [
+                    "A) Facial nerve",
+                    "B) Glossopharyngeal nerve",
+                    "C) Hypoglossal nerve",
+                    "D) Trigeminal nerve",
+                    "E) Vagus nerve"
+                ],
+                answer: "B) Glossopharyngeal nerve"
+            }
+        ]
+    },
+     {
+        title: "23. Cortex, Thalamus, and Hypothalamus - Additional Questions",
+        questions: [
+             {
+                question: "Q186. The ventral posterolateral (VPL) nucleus of the thalamus relays:",
+                options: [
+                    "A) Auditory information to auditory cortex",
+                    "B) Information from the basal ganglia to motor cortex",
+                    "C) Somatosensory information from the body to sensory cortex",
+                    "D) Visual information to visual cortex",
+                    "E) None of the above"
+                ],
+                answer: "C) Somatosensory information from the body to sensory cortex"
+            },
+             {
+                question: "Q187. The pulvinar nucleus of the thalamus is primarily involved in:",
+                options: [
+                    "A) Auditory processing",
+                    "B) Motor control",
+                    "C) Olfactory processing",
+                    "D) Visual attention and visual association",
+                    "E) Somatosensory processing"
+                ],
+                answer: "D) Visual attention and visual association"
+            },
+             {
+                question: "Q188. The arcuate nucleus of the hypothalamus is involved in:",
+                options: [
+                    "A) Body temperature regulation",
+                    "B) Control of pituitary hormone secretion",
+                    "C) Feeding behavior",
+                    "D) Sleep regulation",
+                    "E) Thirst sensation"
+                ],
+                answer: "B) Control of pituitary hormone secretion"
+            },
+             {
+                question: "Q189. The paraventricular nucleus of the hypothalamus is involved in:",
+                options: [
+                    "A) Control of circadian rhythms",
+                    "B) Feeding behavior",
+                    "C) Osmoregulation and autonomic control",
+                    "D) Sexual behavior",
+                    "E) Sleep-wake cycle"
+                ],
+                answer: "C) Osmoregulation and autonomic control"
+            },
+            {
+                question: "Q190. The region of the cerebral cortex responsible for primary somatosensory processing is:",
+                options: [
+                    "A) Angular gyrus",
+                    "B) Inferior temporal gyrus",
+                    "C) Postcentral gyrus",
+                    "D) Precentral gyrus",
+                    "E) Superior temporal gyrus"
+                ],
+                answer: "C) Postcentral gyrus"
+            }
+        ]
+    },
+     {
+        title: "24. Higher Cerebral Functions - Additional Questions",
+        questions: [
+            {
+                question: "Q191. Damage to the dorsolateral prefrontal cortex is most likely to result in:",
+                options: [
+                    "A) Aphasia",
+                    "B) Difficulty with executive functions",
+                    "C) Impaired long-term memory",
+                    "D) Motor deficits",
+                    "E) Sensory loss"
+                ],
+                answer: "B) Difficulty with executive functions"
+            },
+            {
+                question: "Q192. The production of melatonin by the pineal gland is:",
+                options: [
+                    "A) Higher during daytime",
+                    "B) Higher during nighttime",
+                    "C) Not affected by light",
+                    "D) Stimulated by bright light",
+                    "E) None of the above"
+                ],
+                answer: "B) Higher during nighttime"
+            },
+             {
+                question: "Q193. Which of the following is NOT a component of Papez circuit?",
+                options: [
+                    "A) Cingulate gyrus",
+                    "B) Fornix",
+                    "C) Hippocampus",
+                    "D) Mammillary bodies",
+                    "E) Substantia nigra"
+                ],
+                answer: "E) Substantia nigra"
+            },
+             {
+                question: "Q194. Damage to the right parietal lobe may result in:",
+                options: [
+                    "A) Agraphia",
+                    "B) Anomia",
+                    "C) Hemispatial neglect",
+                    "D) Receptive aphasia",
+                    "E) Wernicke's aphasia"
+                ],
+                answer: "C) Hemispatial neglect"
+            },
+            {
+                question: "Q195. Non-REM sleep is characterized by:",
+                options: [
+                    "A) Absence of dreams",
+                    "B) Increase in muscle tone",
+                    "C) Rapid eye movements",
+                    "D) Slow, high-amplitude EEG waves",
+                    "E) Increased heart rate"
+                ],
+                answer: "D) Slow, high-amplitude EEG waves"
+            }
+        ]
+    },
+     {
+        title: "25. Psychiatric Disorders and Psychopharmacology - Additional Questions",
+        questions: [
+            {
+                question: "Q196. Selective serotonin reuptake inhibitors (SSRIs) work by:",
+                options: [
+                    "A) Blocking dopamine receptors",
+                    "B) Blocking norepinephrine reuptake",
+                    "C) Inhibiting monoamine oxidase",
+                    "D) Increasing serotonin release",
+                    "E) Inhibiting serotonin reuptake"
+                ],
+                answer: "E) Inhibiting serotonin reuptake"
+            },
+            {
+                question: "Q197. Which of the following is a common side effect of typical antipsychotic medications?",
+                options: [
+                    "A) Extrapyramidal symptoms",
+                    "B) Hypertension",
+                    "C) Insomnia",
+                    "D) Memory loss",
+                    "E) Weight loss"
+                ],
+                answer: "A) Extrapyramidal symptoms"
+            },
+             {
+                question: "Q198. Benzodiazepines work by:",
+                options: [
+                    "A) Activating dopamine receptors",
+                    "B) Blocking glutamate receptors",
+                    "C) Enhancing GABA's inhibitory effect",
+                    "D) Inhibiting acetylcholinesterase",
+                    "E) Inhibiting serotonin reuptake"
+                ],
+                answer: "C) Enhancing GABA's inhibitory effect"
+            },
+             {
+                question: "Q199. Which of the following is a second-generation (atypical) antipsychotic medication?",
+                options: [
+                    "A) Chlorpromazine",
+                    "B) Clozapine",
+                    "C) Haloperidol",
+                    "D) Phenothiazine",
+                    "E) Thioridazine"
+                ],
+                answer: "B) Clozapine"
+            },
+             {
+                question: "Q200. The mechanism of action of lithium in bipolar disorder involves:",
+                options: [
+                    "A) Blocking dopamine receptors",
+                    "B) Enhancing GABA transmission",
+                    "C) Inhibiting inositol monophosphatase",
+                    "D) Inhibiting serotonin reuptake",
+                    "E) Stabilizing sodium channels"
+                ],
+                answer: "C) Inhibiting inositol monophosphatase"
+            }
+        ]
+    }
+]; // End of quizData
+
+                // Initialize state variables
+        let currentSection = 0;
+        let currentQuestion = 0;
+        // selectedOption will now store the index of the option selected for the *currently displayed* question
+        // The persistent storage of answers will be in allResults
+        let selectedOptionIndexForCurrentQuestion = null;
+        // allResults will store the index of the selected option for *each* question in *each* section.
+        // It will be a 2D array: allResults[sectionIndex][questionIndex] = selectedOptionIndex (or null if not answered)
+        let allResults = [];
+
+        // DOM elements (Ensure these are defined before the script if they are outside)
+        const quizContainer = document.getElementById('quiz-container');
+        const resultsContainer = document.getElementById('results-container'); // Section results
+        const overallCompletionContainer = document.getElementById('overall-completion-message'); // Overall results
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-button');
+        const backButton = document.getElementById('back-button');
+        const currentSectionElement = document.getElementById('current-section');
+        const currentQuestionElement = document.getElementById('current-question');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const nextSectionButton = document.getElementById('next-section-button');
+        const resultsListElement = document.getElementById('results-list'); // Section results list
+        const correctCountElement = document.getElementById('correct-count'); // Section correct count
+        const questionCountElement = document.getElementById('question-count'); // Section total questions
+        const percentageElement = document.getElementById('percentage'); // Section percentage
+
+        // New DOM elements for overall progress, contents, and reset
+        const overallProgressText = document.getElementById('overall-progress-text');
+        const overallProgressFill = document.getElementById('overall-progress-fill');
+        const contentsListElement = document.getElementById('contents-list');
+        const resetQuizButton = document.getElementById('reset-quiz-button');
+        const overallStatsContainer = document.getElementById('overall-stats-container'); // Container for overall stats details
+        const overallRestartButton = document.getElementById('overall-restart-button'); // Restart button on overall completion view
+
+
+        // --- Helper functions for updating UI elements ---
+
+        // Update the overall progress bar and text
+        function updateOverallProgress() {
+            let totalQuestions = 0;
+            let answeredQuestions = 0;
+
+            quizData.forEach((section, sectionIndex) => {
+                 if (section && section.questions) { // Defensive check
+                    totalQuestions += section.questions.length;
+                    if (allResults[sectionIndex]) { // Check if section exists in results
+                        answeredQuestions += allResults[sectionIndex].filter(answerIndex => answerIndex !== null).length;
+                    }
+                 }
+            });
+
+            const percentage = totalQuestions > 0 ? Math.round((answeredQuestions / totalQuestions) * 100) : 0;
+
+            overallProgressText.textContent = `Overall Progress: ${percentage}% (${answeredQuestions} / ${totalQuestions})`;
+            overallProgressFill.style.width = `${percentage}%`;
+        }
+
+        // Render or update the contents list at the bottom
+        function renderContentsList() {
+            contentsListElement.innerHTML = ''; // Clear existing list
+
+            quizData.forEach((section, sectionIndex) => {
+                 // Check if section and questions exist
+                 if (!section || !section.questions || section.questions.length === 0) {
+                     return; // Skip sections with no questions
+                 }
+
+                const sectionData = section.questions;
+                const sectionTotal = sectionData.length;
+                let sectionAnswered = 0;
+                let sectionCorrect = 0;
+                let sectionCompleted = false;
+
+                if (allResults[sectionIndex]) {
+                    const savedAnswers = allResults[sectionIndex];
+                    sectionAnswered = savedAnswers.filter(answerIndex => answerIndex !== null).length;
+                    sectionCompleted = (sectionAnswered === sectionTotal && sectionTotal > 0); // Section completed only if it has questions
+
+                    savedAnswers.forEach((savedIndex, questionIndex) => {
+                        // Ensure the index is valid within the section data length and options exist
+                        if (savedIndex !== null && questionIndex < sectionData.length && sectionData[questionIndex].options) {
+                            const question = sectionData[questionIndex];
+                            // Safely access options array
+                            const userAnswerText = (savedIndex >= 0 && savedIndex < question.options.length) ? question.options[savedIndex] : null;
+                            if (userAnswerText !== null && userAnswerText === question.answer) {
+                                sectionCorrect++;
+                            }
+                        }
+                    });
+                }
+
+                const listItem = document.createElement('li');
+                 // Use class for styling instead of inline styles if desired
+                // listItem.className = 'contents-list-item';
+                listItem.style.cssText = 'margin-bottom: 8px; padding: 12px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; cursor: pointer; transition: background-color 0.2s;';
+                 // Update score display even if section isn't fully answered
+                listItem.innerHTML = `<strong>${section.title}</strong> <span style="float: right;">${sectionCorrect}/${sectionTotal}</span>`;
+
+
+                // Add click handler
+                listItem.addEventListener('click', () => handleContentsClick(sectionIndex));
+
+                contentsListElement.appendChild(listItem);
+            });
+        }
+
+        // Handle click on a section in the contents list
+        function handleContentsClick(sectionIndex) {
+             // Validate section index
+             if (sectionIndex < 0 || sectionIndex >= quizData.length || !quizData[sectionIndex].questions || quizData[sectionIndex].questions.length === 0) {
+                 console.error("Invalid section index clicked in contents list:", sectionIndex);
+                 return; // Do nothing if index is invalid or section has no questions
+             }
+
+            currentSection = sectionIndex;
+            const sectionData = quizData[sectionIndex].questions;
+             // Check completion based on saved results, default to empty array if no results saved for section
+            const sectionAnsweredCount = allResults[sectionIndex] ? allResults[sectionIndex].filter(ans => ans !== null).length : 0;
+            const sectionCompleted = (sectionAnsweredCount === sectionData.length && sectionData.length > 0);
+
+
+            if (sectionCompleted) {
+                // Go to the results page for this section
+                // Set currentQuestion to the end of the section to signify completion state
+                currentQuestion = sectionData.length;
+                showResults(); // This function will now display results for currentSection
+            } else {
+                // Go to the first unanswered question in this section
+                // Use findIndex on the saved answers array for this section
+                const savedAnswers = allResults[sectionIndex] || []; // Get saved answers or empty array
+                const firstUnansweredIndex = savedAnswers.findIndex(ans => ans === null);
+
+                currentQuestion = firstUnansweredIndex >= 0 ? firstUnansweredIndex : 0; // Default to 0 if findIndex returns -1 (shouldn't happen if not completed, but safe)
+
+                displayQuestion(); // This function will now display the question at currentSection, currentQuestion
+            }
+        }
+
+        // --- Core Quiz Logic Functions (Modified) ---
+
+        // Initialize quiz
+        function initQuiz() {
+             // Explicitly set default start point before loading saved data.
+             // loadResults will then potentially overwrite these if a resume point is found.
+             currentSection = 0;
+             currentQuestion = 0;
+             selectedOptionIndexForCurrentQuestion = null;
+
+            // Load saved results - this might overwrite currentSection/currentQuestion
+            loadResults();
+
+            // Check if quizData is empty or has no questions
+             const totalPossibleQuestions = quizData.reduce((sum, section) => sum + (section.questions ? section.questions.length : 0), 0);
+
+             if (!quizData || quizData.length === 0 || totalPossibleQuestions === 0) {
+                 console.warn("Quiz data is empty or contains no questions. Cannot start quiz.");
+                 quizContainer.innerHTML = "<h2>No Quiz Data Available.</h2><p>Please provide quiz questions to start.</p>";
+                 // Hide other elements if no data
+                 document.querySelector('.progress-bar-container').style.display = 'none';
+                 document.getElementById('contents-list-container').style.display = 'none';
+                 resetQuizButton.style.display = 'none';
+                 return; // Stop initialization
+            }
+
+
+            // Ensure UI is in the correct state based on loaded data
+            updateOverallProgress();
+            renderContentsList(); // Initial render of contents
+
+
+            // Check if the quiz is fully completed on load
+            let answeredQuestionsCount = 0;
+             allResults.forEach((sectionAnswers, sectionIndex) => {
+                  if (sectionAnswers) { // Ensure sectionAnswers array exists
+                      answeredQuestionsCount += sectionAnswers.filter(answerIndex => answerIndex !== null).length;
+                  }
+             });
+
+
+            if (answeredQuestionsCount === totalPossibleQuestions) {
+                 // If all questions are answered, and there are questions, show overall results immediately
+                 // Need to set currentSection/Question state appropriately for overall results view
+                 currentSection = quizData.length > 0 ? quizData.length - 1 : 0; // Set to last section (or 0 if no sections)
+                 currentQuestion = (currentSection >= 0 && quizData[currentSection] && quizData[currentSection].questions) ? quizData[currentSection].questions.length : 0; // Set past last question (or 0)
+                 showOverallResults();
+            } else {
+                // Otherwise, start/resume the quiz at the point determined by loadResults
+                // displayQuestion will use currentSection and currentQuestion as set by loadResults (or the default 0,0)
+                displayQuestion();
+            }
+
+
+            // Event listeners
+            nextButton.addEventListener('click', handleNextQuestion);
+            backButton.addEventListener('click', handleBackQuestion);
+            nextSectionButton.addEventListener('click', handleNextSection);
+            resetQuizButton.addEventListener('click', handleResetQuiz); // Add reset button listener
+            overallRestartButton.addEventListener('click', handleResetQuiz); // Restart button on overall view
+        }
+
+        // Load results from local storage
+        function loadResults() {
+            const savedResults = localStorage.getItem('neuroscienceQuizResults'); // Changed storage key
+            let loadedResults = []; // Temporary array to hold loaded data
+
+            if (savedResults) {
+                try {
+                    loadedResults = JSON.parse(savedResults);
+                    if (!Array.isArray(loadedResults)) { // Handle old/corrupt data
+                         loadedResults = [];
+                    }
+                } catch (e) {
+                     console.error("Failed to parse saved results:", e);
+                     loadedResults = []; // Treat as no saved data on error
+                }
+            }
+
+            // Initialize allResults structure based on current quizData, filling from loadedResults
+             allResults = quizData.map((section, sectionIndex) => {
+                 const sectionQuestionCount = section.questions ? section.questions.length : 0;
+                 const sectionLoadedAnswers = (loadedResults[sectionIndex] && Array.isArray(loadedResults[sectionIndex])) ? loadedResults[sectionIndex] : [];
+
+                 // Create the section array, copying loaded answers and filling remaining with null
+                 const sectionResultsArray = Array(sectionQuestionCount).fill(null);
+                 for (let j = 0; j < sectionQuestionCount; j++) {
+                     if (j < sectionLoadedAnswers.length && sectionLoadedAnswers[j] !== undefined) {
+                         // Copy the saved answer if it exists and is not undefined
+                         sectionResultsArray[j] = sectionLoadedAnswers[j];
+                     }
+                 }
+                 return sectionResultsArray;
+             });
+
+
+            // Find where to resume: find the first question in the first section that hasn't been answered (is null)
+            let foundResumePoint = false;
+            for (let i = 0; i < allResults.length; i++) {
+                 // Check if the section from quizData exists and has questions before looking for null
+                 if (quizData[i] && quizData[i].questions && quizData[i].questions.length > 0) {
+                    for (let j = 0; j < allResults[i].length; j++) {
+                        if (allResults[i][j] === null) {
+                            currentSection = i;
+                            currentQuestion = j;
+                            foundResumePoint = true;
+                            break; // Found the question to resume at
+                        }
+                    }
+                 }
+                if (foundResumePoint) break; // Found resume point in an earlier section
+            }
+
+            // If loop finished without finding a null, all questions with data in quizData are answered.
+            // Check total questions vs answered questions to confirm full completion.
+            let totalQ = quizData.reduce((sum, section) => sum + (section.questions ? section.questions.length : 0), 0);
+            let answeredQ = allResults.reduce((sum, sectionAns) => sum + (sectionAns ? sectionAns.filter(ans => ans !== null).length : 0), 0);
+
+            if (!foundResumePoint && totalQ > 0 && answeredQ === totalQ) {
+                 // All answered, set indices to the end state to trigger overall results view in initQuiz
+                 currentSection = quizData.length > 0 ? quizData.length - 1 : 0; // Last section index
+                 currentQuestion = (currentSection >= 0 && quizData[currentSection] && quizData[currentSection].questions) ? quizData[currentSection].questions.length : 0; // One past the last question index
+            } else if (!foundResumePoint && totalQ > 0 && answeredQ < totalQ) {
+                 // This case should ideally not happen if findIndex worked correctly on valid data.
+                 // If no resume point found, but questions are incomplete, default to the very start (0,0).
+                 // This acts as a safety fallback for unexpected data states.
+                 console.warn("Resume point not found, but quiz is incomplete. Falling back to Section 1, Question 1 (index 0, 0).");
+                 currentSection = 0;
+                 currentQuestion = 0;
+            } else if (totalQ === 0) {
+                 // If quizData is empty, set to 0,0. initQuiz will show no data message.
+                 currentSection = 0;
+                 currentQuestion = 0;
+            }
+             // If foundResumePoint was true, currentSection/currentQuestion were already set correctly in the loop.
+
+             // Debugging
+             console.log("Loaded Results:", allResults);
+             console.log("Resume point (loadResults final):", currentSection, currentQuestion);
+        }
+
+        // Save results to local storage
+        function saveResults() {
+            localStorage.setItem('neuroscienceQuizResults', JSON.stringify(allResults)); // Changed storage key
+            // Update UI elements that depend on saved results
+            updateOverallProgress();
+            renderContentsList(); // Update contents list scores
+        }
+
+
+        // Display current question
+        function displayQuestion() {
+            // Hide results views
+            resultsContainer.style.display = 'none';
+            overallCompletionContainer.style.display = 'none';
+
+             // Check for empty quiz data early
+             const totalPossibleQuestions = quizData.reduce((sum, section) => sum + (section.questions ? section.questions.length : 0), 0);
+             if (!quizData || quizData.length === 0 || totalPossibleQuestions === 0) {
+                 quizContainer.style.display = 'block'; // Still need container to show message
+                 quizContainer.innerHTML = "<h2>No Quiz Data Available.</h2><p>Please provide quiz questions to start.</p>";
+                 // Hide other elements if no data
+                 document.querySelector('.progress-bar-container').style.display = 'none';
+                 document.getElementById('contents-list-container').style.display = 'none';
+                 resetQuizButton.style.display = 'none';
+                 return; // Exit function
+             }
+
+             // Ensure currentSection is valid before accessing quizData
+             if (currentSection >= quizData.length || currentSection < 0 || !quizData[currentSection] || !quizData[currentSection].questions) {
+                 console.error("Invalid section index for display:", currentSection, ". Redirecting.");
+                 handleNextSection(); // Try to move to the next valid section or overall results
+                 return;
+             }
+
+            const currentSectionData = quizData[currentSection];
+
+            // Check if the section actually has questions
+             if (currentSectionData.questions.length === 0) {
+                 console.warn(`Section ${currentSection} has no questions. Skipping to next section.`);
+                 handleNextSection(); // Automatically move to the next section
+                 return;
+             }
+
+            // Ensure currentQuestion is valid within the current section's questions
+             if (currentQuestion >= currentSectionData.questions.length || currentQuestion < 0) {
+                 console.error("Invalid question index:", currentQuestion, "in section", currentSection, ". Redirecting.");
+                 // If past the last question index, it means the section is completed, show results for this section
+                 if (currentQuestion >= currentSectionData.questions.length) {
+                     showResults();
+                 } else { // Should not be less than 0 unless logic error, reset to start
+                     currentSection = 0; currentQuestion = 0; displayQuestion(); // Attempt restart at 0,0
+                 }
+                 return;
+             }
+
+
+            const questionData = currentSectionData.questions[currentQuestion];
+
+            quizContainer.style.display = 'block'; // Ensure quiz view is visible
+
+            // Update progress information
+            currentSectionElement.textContent = quizData[currentSection].title; // Use title from quizData
+            currentQuestionElement.textContent = currentQuestion + 1;
+            totalQuestionsElement.textContent = currentSectionData.questions.length;
+
+            // Display question
+            questionText.textContent = questionData.question;
+
+            // Clear and populate options
+            optionsContainer.innerHTML = '';
+            // Get the saved answer index for this specific question
+            // Ensure allResults[currentSection] exists and is an array before accessing index
+            selectedOptionIndexForCurrentQuestion = (allResults[currentSection] && Array.isArray(allResults[currentSection]) && allResults[currentSection][currentQuestion] !== undefined) ? allResults[currentSection][currentQuestion] : null;
+
+
+             // Ensure questionData.options exists and is an array
+             if (questionData.options && Array.isArray(questionData.options)) {
+                 questionData.options.forEach((option, index) => {
+                     const optionElement = document.createElement('div');
+                     optionElement.className = 'option';
+                     optionElement.textContent = option;
+                     // Add click listener to select this option
+                     optionElement.addEventListener('click', () => selectOption(index));
+
+                     // If this option index matches the saved answer, mark it as selected
+                     if (selectedOptionIndexForCurrentQuestion !== null && index === selectedOptionIndexForCurrentQuestion) {
+                         optionElement.classList.add('selected');
+                     }
+                     optionsContainer.appendChild(optionElement);
+                 });
+             } else {
+                 optionsContainer.innerHTML = '<em>No options available for this question.</em>';
+                 console.warn(`Question ${currentQuestion + 1} in section ${currentSection + 1} has no options array.`);
+             }
+
+
+            // Enable next button if an option is already selected (from saved state)
+            nextButton.disabled = (selectedOptionIndexForCurrentQuestion === null);
+
+            // Manage back button state
+            backButton.disabled = (currentSection === 0 && currentQuestion === 0);
+
+        }
+
+        // Handle option selection
+        function selectOption(index) {
+            // Validate index against options length and question/section existence
+             const currentSectionData = quizData[currentSection];
+             if (!currentSectionData || !currentSectionData.questions || currentQuestion >= currentSectionData.questions.length) return;
+             const questionData = currentSectionData.questions[currentQuestion];
+             if (!questionData.options || !Array.isArray(questionData.options) || index < 0 || index >= questionData.options.length) {
+                 console.error("Invalid option index selected or options missing:", index);
+                 return;
+             }
+
+            selectedOptionIndexForCurrentQuestion = index;
+
+            // Update UI to show selected option
+            const options = optionsContainer.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                if (i === index) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+
+            // Enable next button
+            nextButton.disabled = false;
+
+            // Save the selected option index immediately
+            // Ensure the results structure is prepared for this section and question
+            // This should be handled by loadResults/initQuiz, but defensive check
+            if (!allResults[currentSection]) {
+                 // This indicates a severe state mismatch if loadResults/initQuiz didn't prepare this
+                 console.error("allResults structure invalid at section", currentSection, ". Re-initializing results.");
+                 allResults = quizData.map(section => Array(section.questions ? section.questions.length : 0).fill(null));
+            }
+             // Ensure the array is large enough for this question index
+             const sectionQuestionCount = quizData[currentSection].questions ? quizData[currentSection].questions.length : 0;
+             while(allResults[currentSection].length < sectionQuestionCount) {
+                 allResults[currentSection].push(null);
+             }
+
+            if (currentQuestion < allResults[currentSection].length) {
+                allResults[currentSection][currentQuestion] = selectedOptionIndexForCurrentQuestion;
+                saveResults();
+            } else {
+                console.error("Attempted to save answer for invalid question index in results array:", currentQuestion);
+                 // Optionally trigger a state reset or warning
+            }
+        }
+
+        // Handle next question
+        function handleNextQuestion() {
+            // The answer should already be saved in selectOption if an option was picked
+            // If next is enabled, an option must have been picked.
+
+            const currentSectionData = quizData[currentSection];
+             if (!currentSectionData || !currentSectionData.questions) {
+                 console.error("Invalid section data for next question navigation.");
+                 handleNextSection(); // Attempt to move on gracefully
+                 return;
+             }
+
+            // Move to next question or show results
+            if (currentQuestion < currentSectionData.questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                // Reached end of section, show results for this section
+                 // Increment currentQuestion to signify we are *past* the last question
+                currentQuestion++;
+                showResults();
+            }
+        }
+
+        // Handle back button
+        function handleBackQuestion() {
+            // Cannot go back from the first question (button is disabled)
+            if (currentSection === 0 && currentQuestion === 0) {
+                return;
+            }
+
+             // If currently on a results page, go back to the last question of the section results were shown for
+             if (resultsContainer.style.display === 'block') {
+                  // If we just showed results for currentSection, go back to the last question of currentSection
+                 if (currentSection >= 0 && quizData[currentSection] && quizData[currentSection].questions) {
+                      currentQuestion = quizData[currentSection].questions.length - 1; // Go back to the last question index
+                 } else {
+                      // Fallback if current section data is missing (shouldn't happen if showResults validated)
+                     currentSection = 0;
+                     currentQuestion = 0;
+                 }
+                 displayQuestion(); // Display the question
+
+             } else if (overallCompletionContainer.style.display === 'block') {
+                 // If currently viewing overall results, go back to the results of the last section
+                 currentSection = quizData.length > 0 ? quizData.length - 1 : 0; // Move to the last section index
+                  // Ensure the last section has questions before attempting to show its results
+                 if (currentSection >= 0 && quizData[currentSection] && quizData[currentSection].questions && quizData[currentSection].questions.length > 0) {
+                      // Set currentQuestion past the last question index to trigger showResults
+                      currentQuestion = quizData[currentSection].questions.length;
+                      showResults();
+                 } else {
+                      // If last section is empty or quizData is empty, just go to the start of the quiz view
+                      currentSection = 0;
+                      currentQuestion = 0;
+                      displayQuestion();
+                 }
+
+             } else if (currentQuestion > 0) {
+                // Move back within the current section (if not on a results page)
+                currentQuestion--;
+                displayQuestion();
+            } else if (currentSection > 0) {
+                // Move back to the last question of the previous section (if not on a results page)
+                currentSection--;
+                 // Find the last question index in the previous section
+                 if (currentSection >= 0 && quizData[currentSection] && quizData[currentSection].questions) {
+                     currentQuestion = quizData[currentSection].questions.length - 1;
+                 } else {
+                      // Fallback if previous section data is missing
+                      currentSection = 0; // Go to start if previous is invalid
+                      currentQuestion = 0;
+                 }
+                 displayQuestion();
+            }
+            // If currentSection is 0 and currentQuestion is 0, button is disabled, so we don't reach here.
+        }
+
+        // Show section results
+        function showResults() {
+            quizContainer.style.display = 'none';
+            overallCompletionContainer.style.display = 'none';
+            resultsContainer.style.display = 'block'; // Show section results view
+
+            // Ensure currentSection is valid for displaying results
+             if (currentSection >= quizData.length || currentSection < 0 || !quizData[currentSection] || !quizData[currentSection].questions) {
+                 console.error("Invalid section index or data for results:", currentSection, ". Redirecting to overall results.");
+                 showOverallResults(); // Fallback to overall results
+                 return;
+             }
+
+            const currentSectionData = quizData[currentSection];
+             const currentSectionQuestions = currentSectionData.questions;
+
+             // If the section has no questions, just move to the next section
+             if (!currentSectionQuestions || currentSectionQuestions.length === 0) {
+                 console.warn(`Attempted to show results for empty section ${currentSection}. Moving to next section.`);
+                 handleNextSection();
+                 return;
+             }
+
+
+            const sectionAnsweredIndices = allResults[currentSection] || []; // Use empty array if section results are missing
+
+            // Calculate stats for the current section
+            let correct = 0;
+            let total = currentSectionQuestions.length; // Total questions in this section
+
+            sectionAnsweredIndices.forEach((savedIndex, index) => {
+                // Ensure the index is valid and an answer was saved, and question/options exist
+                if (savedIndex !== null && index < currentSectionQuestions.length && currentSectionQuestions[index].options) {
+                    const questionData = currentSectionQuestions[index];
+                     // Safely access options array
+                     const userAnswerText = (savedIndex >= 0 && savedIndex < questionData.options.length) ? questionData.options[savedIndex] : null;
+                    if (userAnswerText !== null && userAnswerText === questionData.answer) {
+                        correct++;
+                    }
+                }
+            });
+
+            const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+            // Update stats display
+            correctCountElement.textContent = correct;
+            questionCountElement.textContent = total;
+            percentageElement.textContent = percentage;
+
+            // Display detailed results for the section
+            resultsListElement.innerHTML = '';
+
+            currentSectionQuestions.forEach((questionData, questionIndex) => {
+                const savedAnswerIndex = allResults[currentSection] && allResults[currentSection][questionIndex] !== undefined ? allResults[currentSection][questionIndex] : null; // Get user's saved index for this question
+                 // Handle potential missing options array defensively
+                const userAnswerText = (savedAnswerIndex !== null && questionData.options && Array.isArray(questionData.options) && savedAnswerIndex >= 0 && savedAnswerIndex < questionData.options.length) ? questionData.options[savedAnswerIndex] : 'Not answered';
+                const correctAnswerText = questionData.answer; // Assume correct answer is always a string if question exists
+
+                const isCorrect = (savedAnswerIndex !== null) && (userAnswerText === correctAnswerText);
+
+                const resultItem = document.createElement('div');
+                // Determine the main class for the result item container
+                 if (savedAnswerIndex === null) {
+                     resultItem.className = 'result-item unanswered'; // Use unanswered class
+                 } else {
+                     resultItem.className = `result-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                 }
+
+
+                let optionsHtml = '<div class="options" style="gap: 8px; margin-top: 10px;">'; // Container for options in results
+
+                 // Display all options regardless
+                 if (questionData.options && Array.isArray(questionData.options)) { // Ensure options array exists
+                     questionData.options.forEach((optionText, optionIndex) => {
+                         let optionClass = 'option'; // Base class for styling for results display
+
+                         // Apply specific classes for visual feedback in results
+                         const isCorrectOption = (optionText === correctAnswerText);
+                         const isUserAnswer = (savedAnswerIndex !== null && optionIndex === savedAnswerIndex);
+
+                         if (isCorrectOption && isUserAnswer) {
+                              optionClass = 'option correct selected'; // Correct and user selected this one
+                         } else if (isCorrectOption) {
+                              optionClass = 'option correct'; // Correct, but user didn't select this one
+                         } else if (isUserAnswer) {
+                              optionClass = 'option incorrect selected'; // Incorrect, and user selected this one
+                         } else {
+                              optionClass = 'option'; // Not correct, user didn't select this one
+                         }
+
+
+                         optionsHtml += `<div class="${optionClass}" style="cursor: default; padding: 8px 12px;">${optionText}</div>`;
+                     });
+                 } else {
+                     optionsHtml += '<em>No options provided for this question.</em>';
+                     console.warn(`Question ${questionIndex + 1} in section ${currentSection + 1} is missing options array.`);
+                 }
+
+                optionsHtml += '</div>';
+
+                // Display question and results summary for this question
+                resultItem.innerHTML = `
+                    <p><strong>Question ${questionIndex + 1}:</strong> ${questionData.question}</p>
+                    ${optionsHtml}
+                    <p style="margin-top: 10px;"><strong>Your answer:</strong> ${userAnswerText} ${!isCorrect && savedAnswerIndex !== null ? ' (Incorrect)' : ''}</p>
+                    ${savedAnswerIndex === null || !isCorrect ? `<p><strong>Correct answer:</strong> ${correctAnswerText} ${savedAnswerIndex === null ? '(Not Answered)' : ''}</p>` : ''}
+                `;
+                // The status is already conveyed by the container class and options styling
+
+
+                resultsListElement.appendChild(resultItem);
+            });
+
+            // Determine if the next section button should be "Next Section" or "Finish Quiz"
+            // Find the next section that actually has questions
+             let nextSectionIndex = currentSection + 1;
+             while(nextSectionIndex < quizData.length && (!quizData[nextSectionIndex].questions || quizData[nextSectionIndex].questions.length === 0)) {
+                 nextSectionIndex++;
+             }
+
+            if (nextSectionIndex < quizData.length) {
+                nextSectionButton.textContent = 'Next Section';
+                 nextSectionButton.disabled = false; // Always allow moving to next section from results
+            } else {
+                nextSectionButton.textContent = 'Finish Quiz';
+                 nextSectionButton.disabled = false; // Always allow finishing from the last section's results
+            }
+        }
+
+        // Handle next section or finish quiz
+        function handleNextSection() {
+             // Find the next section that has questions
+             let nextSectionIndex = currentSection + 1;
+             while(nextSectionIndex < quizData.length && (!quizData[nextSectionIndex] || !quizData[nextSectionIndex].questions || quizData[nextSectionIndex].questions.length === 0)) {
+                 nextSectionIndex++;
+             }
+
+            // Check if we are currently viewing the results of the last section WITH questions
+            if (nextSectionIndex >= quizData.length) {
+                 // If so, show overall results (no more sections with questions)
+                showOverallResults();
+            } else {
+                // Move to the next section that has questions
+                currentSection = nextSectionIndex;
+                currentQuestion = 0;
+                selectedOptionIndexForCurrentQuestion = null; // Reset state for the *new* question
+                // displayQuestion will load the saved state for the first question of the new section
+                displayQuestion();
+            }
+        }
+
+        // Show overall results at the very end
+        function showOverallResults() {
+             quizContainer.style.display = 'none';
+             resultsContainer.style.display = 'none'; // Hide section results
+             overallCompletionContainer.style.display = 'block'; // Show overall completion view
+
+             overallStatsContainer.innerHTML = generateOverallStats(); // Populate the stats within the container
+        }
+
+
+        // Generate overall statistics HTML
+        function generateOverallStats() {
+            let totalQuestions = 0;
+            let totalCorrect = 0;
+
+            quizData.forEach((section, sectionIndex) => {
+                if (section && section.questions) { // Defensive check
+                    totalQuestions += section.questions.length;
+                    if (allResults[sectionIndex]) {
+                         allResults[sectionIndex].forEach((savedIndex, questionIndex) => {
+                             // Ensure valid index and question/options exist
+                             if (savedIndex !== null && questionIndex < section.questions.length && section.questions[questionIndex].options) {
+                                 const questionData = section.questions[questionIndex];
+                                  // Safely access options array
+                                 const userAnswerText = (savedIndex >= 0 && savedIndex < questionData.options.length) ? questionData.options[savedIndex] : null;
+                                 if (userAnswerText !== null && userAnswerText === questionData.answer) {
+                                     totalCorrect++;
+                                 }
+                             }
+                         });
+                    }
+                }
+            });
+
+            const percentage = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+
+            let html = `<p>You scored <span id="overall-correct-count">${totalCorrect}</span> out of <span id="overall-question-count">${totalQuestions}</span> (<span id="overall-percentage">${percentage}%</span>)</p>`;
+
+            html += '<h3 style="text-align: center; margin-top: 20px; margin-bottom: 10px;">Section Breakdown:</h3>';
+            html += '<ul style="text-align: left; max-width: 400px; margin: 0 auto; list-style: none; padding: 0;">'; // Added styling for list
+
+            quizData.forEach((section, index) => {
+                 if (section && section.questions && section.questions.length > 0) { // Only show sections that actually have questions
+                    const sectionResults = allResults[index];
+                    let sectionCorrect = 0;
+                    let sectionAnsweredCount = 0; // Count questions the user actually answered
+                    if(sectionResults) {
+                         sectionResults.forEach((savedIndex, questionIndex) => {
+                             // Ensure valid index and question/options exist
+                             if (savedIndex !== null && questionIndex < section.questions.length && section.questions[questionIndex].options) {
+                                 sectionAnsweredCount++;
+                                 const questionData = section.questions[questionIndex];
+                                  // Safely access options array
+                                 const userAnswerText = (savedIndex >= 0 && savedIndex < questionData.options.length) ? questionData.options[savedIndex] : null;
+                                 if (userAnswerText !== null && userAnswerText === questionData.answer) {
+                                     sectionCorrect++;
+                                 }
+                             }
+                         });
+                    }
+
+
+                    const sectionTotal = section.questions.length;
+                    // Calculate percentage based on total questions in section
+                    const sectionPercentage = sectionTotal > 0 ? Math.round((sectionCorrect / sectionTotal) * 100) : 0;
+
+                     // Indicate if the section is completed (all questions answered)
+                    const completionStatus = (sectionAnsweredCount === sectionTotal && sectionTotal > 0) ? ' (Completed)' : '';
+
+
+                    html += `<li style="margin-bottom: 5px; padding: 8px; background-color: #e9ecef; border-radius: 4px;"><strong>${section.title}:</strong> ${sectionCorrect}/${sectionTotal} (${sectionPercentage}%)${completionStatus}</li>`; // Added styling for list items
+                }
+            });
+            html += '</ul>';
+
+            return html;
+        }
+
+        // Handle Reset Quiz Button
+        function handleResetQuiz() {
+            const confirmation = confirm("Are you sure you want to reset all your quiz data? This action cannot be undone.");
+            if (confirmation) {
+                // Clear local storage
+                localStorage.removeItem('neuroscienceQuizResults'); // Changed storage key
+                console.log("Quiz data reset in local storage.");
+
+                // Reset state variables
+                currentSection = 0;
+                currentQuestion = 0;
+                selectedOptionIndexForCurrentQuestion = null;
+                // Re-initialize allResults structure based on quizData, filled with nulls
+                allResults = quizData.map(section => Array(section.questions ? section.questions.length : 0).fill(null));
+                 console.log("Internal state reset:", allResults);
+
+
+                // Update UI (progress and contents)
+                updateOverallProgress();
+                renderContentsList();
+
+                // Go back to the start of the quiz (Section 1, Question 1)
+                resultsContainer.style.display = 'none'; // Hide section results
+                overallCompletionContainer.style.display = 'none'; // Hide overall results
+
+                 // Ensure there are questions to display before calling displayQuestion
+                 const totalPossibleQuestions = quizData.reduce((sum, section) => sum + (section.questions ? section.questions.length : 0), 0);
+                 if (totalPossibleQuestions > 0) {
+                     quizContainer.style.display = 'block'; // Show quiz view
+                    displayQuestion(); // This will display the first question (0,0)
+                 } else {
+                      // If quizData is empty after reset, show message
+                     quizContainer.style.display = 'block'; // Ensure container is visible for message
+                     quizContainer.innerHTML = "<h2>Quiz data reset. No quiz data available.</h2><p>Please provide quiz questions.</p>";
+                     // Hide elements if no data
+                     document.querySelector('.progress-bar-container').style.display = 'none';
+                     document.getElementById('contents-list-container').style.display = 'none';
+                     resetQuizButton.style.display = 'none';
+                 }
+
+            }
+        }
+
+
+        // Start the quiz when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initQuiz);
+
+    </script>
+</body>
+</html>
+132.1s
